@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/news_fragment">
+
+    <fragment
+        android:id="@+id/news_fragment"
+        android:name="com.merseyside.template.fragments.main.view.NewsFragment"
+        android:label="NewsFragment">
+        <action
+            android:id="@+id/action_news_fragment_to_news_fragment1"
+            app:destination="@id/news_fragment1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/news_fragment1"
+        android:name="com.merseyside.template.fragments.main.view.NewsFragment"
+        android:label="NewsFragment">
+    </fragment>
+
+
+
+</navigation>

@@ -1,0 +1,16 @@
+<resources>
+
+    <style name="Theme.TemplateApp.21" parent="Theme.TemplateApp.Base">
+        <item name="android:navigationBarColor">@color/dark</item>
+        <item name="android:statusBarColor">@color/dark</item>
+    </style>
+
+    <style name="Theme.TemplateApp" parent="Theme.TemplateApp.21"/>
+
+    <style name="Theme.TemplateApp.Light.OppositeStatusBar" parent="Theme.TemplateApp">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+</resources>

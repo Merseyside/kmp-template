@@ -1,7 +1,3 @@
-/*
- * Copyright 2019 IceRock MAG Inc. Use of this source code is governed by the Apache 2.0 license.
- */
-
 allprojects {
     repositories {
         google()
@@ -12,6 +8,8 @@ allprojects {
         maven { url = uri("https://dl.bintray.com/icerockdev/moko") }
         maven { url = uri("https://kotlin.bintray.com/ktor") }
         maven { url = uri("https://dl.bintray.com/aakira/maven") }
+        maven { url = uri("https://jitpack.io") }
+        maven { url = uri("https://dl.bintray.com/ekito/koin") }
     }
 }
 

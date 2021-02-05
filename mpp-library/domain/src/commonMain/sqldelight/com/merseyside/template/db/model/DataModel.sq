@@ -1,0 +1,32 @@
+CREATE TABLE DataModel(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
+);
+
+insertItem:
+INSERT INTO
+DataModel(name)
+VALUES(?);
+
+changeItem:
+REPLACE INTO
+DataModel(id, name)
+VALUES(?, ?);
+
+selectAll:
+SELECT *
+FROM DataModel;
+
+selectById:
+SELECT *
+FROM DataModel
+WHERE id = ?;
+
+deleteItem:
+DELETE
+FROM DataModel
+WHERE id = ?;
+
+lastInsertRowId:
+SELECT last_insert_rowid();
+

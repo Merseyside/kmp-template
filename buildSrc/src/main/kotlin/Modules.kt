@@ -1,23 +1,28 @@
-/*
- * Copyright 2019 IceRock MAG Inc. Use of this source code is governed by the Apache 2.0 license.
- */
-
 object Modules {
+    object Android {
+        object MerseyLibs {
+            const val archy = ":archy"
+            const val adapters = ":adapters"
+            const val animators = ":animators"
+            const val utils = ":utils"
+        }
+    }
+
     object MultiPlatform {
-        val domain = MultiPlatformModule(
-            name = ":mpp-library:domain",
-            exported = true
-        )
+
+        object MerseyLibs {
+            val kmpCleanArch = MultiPlatformModule(":kmp-clean-mvvm-arch")
+            val kmpUtils = MultiPlatformModule(":kmp-utils")
+        }
+
+        val mppLibrary = ":mpp-library"
+
+        val newsApi = MultiPlatformModule("$mppLibrary:library:newsApi")
+        val domain = MultiPlatformModule("$mppLibrary:domain")
 
         object Feature {
-            val config = MultiPlatformModule(
-                name = ":mpp-library:feature:config",
-                exported = true
-            )
-            val list = MultiPlatformModule(
-                name = ":mpp-library:feature:list",
-                exported = true
-            )
+            val config = MultiPlatformModule("$mppLibrary:feature:config")
+            val list = MultiPlatformModule("$mppLibrary:feature:list")
         }
     }
 }

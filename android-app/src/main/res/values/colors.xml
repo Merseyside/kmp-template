@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="light_dark">#C6C6C6</color>
+    <color name="black">#000000</color>
+
+    <!--  Light theme  -->
+    <color name="grey">#808080</color>
+    <color name="grey_light">#FAFAFA</color>
+    <color name="grey_dark">#F1F1F1</color>
+
+    <!--  Dark theme  -->
+    <color name="darkest_dark">#171A22</color>
+    <color name="dark">#1F222C</color>
+    <color name="dark_light">#242930</color>
+
+    <color name="pink">#D81B60</color>
+    <color name="blue_primary">#03A9F4</color>
+    <color name="blue_primary_variant">#C1E7F8</color>
+
+    <color name="green">#45E100</color>
+    <color name="transparent_dark">#991F222C</color>
+    <color name="transparent_light">#67FFFFFF</color>
+</resources>

@@ -1,60 +1,43 @@
-/*
- * Copyright 2019 IceRock MAG Inc. Use of this source code is governed by the Apache 2.0 license.
- */
-
 object Versions {
-    object Android {
-        const val compileSdk = 28
-        const val targetSdk = 28
-        const val minSdk = 21
-    }
-
-    const val kotlin = "1.3.70"
-
-    private const val mokoResources = "0.9.0"
-    private const val mokoNetwork = "0.6.0"
-    private const val mokoUnits = "0.3.1"
+    const val kotlin = "1.4.30"
 
     object Plugins {
-        const val kotlin = Versions.kotlin
-        const val serialization = Versions.kotlin
-        const val androidExtensions = Versions.kotlin
-        const val mokoResources = Versions.mokoResources
-        const val mokoNetwork = Versions.mokoNetwork
-        const val mokoUnits = Versions.mokoUnits
+        const val gradle = "4.1.1"
+
+        const val serialization = kotlin
+        const val sqlDelight = "1.4.4"
     }
 
-    object Libs {
-        object Android {
-            const val kotlinStdLib = Versions.kotlin
-            const val appCompat = "1.1.0"
-            const val material = "1.0.0"
-            const val constraintLayout = "1.1.3"
-            const val lifecycle = "2.0.0"
-            const val recyclerView = "1.0.0"
-        }
+    object Common {
+        const val coroutines = "1.3.8"
+        const val serialization = "1.0.1"
+        const val merseyLibs = "1.3.0"
+        const val koin = "3.0.0-alpha-4"
+    }
 
-        object MultiPlatform {
-            const val kotlinStdLib = Versions.kotlin
+    object Android {
+        const val appCompat = "1.2.0"
+        const val material = "1.2.1"
+        const val constraintLayout = "2.1.0-alpha2"
+        const val navigation = "2.3.2"
+        const val lifecycle = "2.3.0-rc01"
+        const val recyclerView = "1.1.0"
+        const val mokoMvvm = "0.9.1"
+    }
 
-            const val coroutines = "1.3.5"
-            const val serialization = "0.20.0"
-            const val ktorClient = "1.3.2"
-            const val ktorClientLogging = ktorClient
+    object MultiPlatform {
+        const val kotlinStdLib = kotlin
 
-            const val mokoParcelize = "0.3.0"
-            const val mokoTime = "0.3.0"
-            const val mokoGraphics = "0.3.0"
-            const val mokoMvvm = "0.6.0"
-            const val mokoResources = Versions.mokoResources
-            const val mokoNetwork = Versions.mokoNetwork
-            const val mokoFields = "0.3.0"
-            const val mokoPermissions = "0.5.0"
-            const val mokoMedia = "0.4.0"
-            const val mokoUnits = Versions.mokoUnits
+        const val ktorClient = "1.5.1"
+        const val ktorClientLogging = ktorClient
 
-            const val napier = "1.2.0"
-            const val settings = "0.5.1"
-        }
+        const val mokoMvvm = "0.9.1"
+        const val mokoResources = "0.14.0"
+        const val mokoNetwork = "0.9.1"
+        const val mokoUnits = "0.4.1"
+        const val mokoPermissions = "0.7.0"
+        const val mokoParcelize = "0.5.0"
+
+        const val settings = "0.7.1"
     }
 }

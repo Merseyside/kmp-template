@@ -1,0 +1,20 @@
+<resources>
+
+    <dimen name="very_large_spacing">48dp</dimen>
+    <dimen name="large_spacing">36dp</dimen>
+    <dimen name="medium_spacing">24dp</dimen>
+    <dimen name="normal_spacing">16dp</dimen>
+    <dimen name="small_spacing">8dp</dimen>
+    <dimen name="very_small_spacing">4dp</dimen>
+    <dimen name="tiny_spacing">2dp</dimen>
+
+    <dimen name="small_text_size">14sp</dimen>
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="medium_text_size">18sp</dimen>
+    <dimen name="large_text_size">24sp</dimen>
+    <dimen name="very_large_text_size">34sp</dimen>
+    <dimen name="largest_text_size">48sp</dimen>
+    <dimen name="second_largest_text_size">60sp</dimen>
+
+    <dimen name="icon_size">32dp</dimen>
+</resources>

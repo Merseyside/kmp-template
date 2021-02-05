@@ -1,51 +1,58 @@
-/*
- * Copyright 2019 IceRock MAG Inc. Use of this source code is governed by the Apache 2.0 license.
- */
+import dependencies.Deps
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import extensions.isLocalDependencies
 
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.multiplatform")
-    id("dev.icerock.mobile.multiplatform")
-    id("dev.icerock.mobile.multiplatform-resources")
+    plugin(Plugins.androidLibrary)
+    plugin(Plugins.kotlinMultiplatform)
+    plugin(Plugins.mobileMultiplatform)
+    plugin(Plugins.multiplatformResources)
 }
 
 android {
-    compileSdkVersion(Versions.Android.compileSdk)
+    compileSdkVersion(AndroidConfig.COMPILE_SDK_VERSION)
 
     defaultConfig {
-        minSdkVersion(Versions.Android.minSdk)
-        targetSdkVersion(Versions.Android.targetSdk)
+        minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
+        targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
+    }
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
 val mppLibs = listOf(
-    Deps.Libs.MultiPlatform.settings,
-    Deps.Libs.MultiPlatform.napier,
-    Deps.Libs.MultiPlatform.mokoParcelize,
-    Deps.Libs.MultiPlatform.mokoResources,
-    Deps.Libs.MultiPlatform.mokoMvvm,
-    Deps.Libs.MultiPlatform.mokoUnits
+    Deps.MultiPlatform.coroutines,
+    Deps.MultiPlatform.koin,
+    Deps.MultiPlatform.settings,
+    Deps.MultiPlatform.mokoParcelize,
+    Deps.MultiPlatform.mokoResources,
+    Deps.MultiPlatform.mokoMvvm,
+    Deps.MultiPlatform.mokoUnits
 )
 val mppModules = listOf(
     Modules.MultiPlatform.domain,
-    Modules.MultiPlatform.Feature.config,
-    Modules.MultiPlatform.Feature.list
+    Modules.MultiPlatform.Feature.list,
+    Modules.MultiPlatform.newsApi
 )
 
-setupFramework(
-    exports = mppLibs + mppModules
+val merseyModules = listOf(
+    Modules.MultiPlatform.MerseyLibs.kmpCleanArch
 )
 
 dependencies {
-    mppLibrary(Deps.Libs.MultiPlatform.kotlinStdLib)
-    mppLibrary(Deps.Libs.MultiPlatform.coroutines)
+    mppModules.forEach { lib -> mppModule(lib) }
 
-    androidLibrary(Deps.Libs.Android.lifecycle)
+    if (isLocalDependencies()) {
+        merseyModules.forEach { lib -> mppModule(lib) }
+    }
 
-    mppLibs.forEach { mppLibrary(it) }
-    mppModules.forEach { mppModule(it) }
+    mppLibs.forEach { lib -> mppLibrary(lib) }
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = "org.example.library"
+    multiplatformResourcesPackage = SharedConfig.RESOURCES_PACKAGE
 }

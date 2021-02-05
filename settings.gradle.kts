@@ -1,32 +1,38 @@
-/*
- * Copyright 2019 IceRock MAG Inc. Use of this source code is governed by the Apache 2.0 license.
- */
+include(
+    ":android-app",
+    ":mpp-library",
+    ":mpp-library:domain",
+    ":mpp-library:feature:list",
+    ":mpp-library:library:newsApi"
+)
 
-pluginManagement {
-    repositories {
-        jcenter()
-        google()
+private val isLocalDependencies = true
 
-        maven { url = uri("https://dl.bintray.com/kotlin/kotlin") }
-        maven { url = uri("https://kotlin.bintray.com/kotlinx") }
-        maven { url = uri("https://jetbrains.bintray.com/kotlin-native-dependencies") }
-        maven { url = uri("https://maven.fabric.io/public") }
-        maven { url = uri("https://dl.bintray.com/icerockdev/plugins") }
-        maven { url = uri("https://plugins.gradle.org/m2/") }
-    }
-    resolutionStrategy.eachPlugin {
-        // part of plugins defined in Deps.Plugins, part in buildSrc/build.gradle.kts
-        val module = Deps.plugins[requested.id.id] ?: return@eachPlugin
+if (isLocalDependencies) {
 
-        useModule(module)
-    }
+    include(":kmp-clean-mvvm-arch")
+    project(":kmp-clean-mvvm-arch").projectDir =
+        File(rootDir.parent, "merseykmplibrary/kmp-clean-mvvm-arch")
+
+    include(":kmp-utils")
+    project(":kmp-utils").projectDir =
+        File(rootDir.parent, "merseykmplibrary/kmp-utils")
+
+    include(":utils")
+    project(":utils").projectDir =
+        File(rootDir.parent, "mersey-android-library/utils")
+
+    include(":animators")
+    project(":animators").projectDir =
+        File(rootDir.parent, "mersey-android-library/animators")
+
+    include(":archy")
+    project(":archy").projectDir =
+        File(rootDir.parent, "mersey-android-library/archy")
+
+    include(":adapters")
+    project(":adapters").projectDir =
+        File(rootDir.parent, "mersey-android-library/adapters")
+
 }
-
-include(":android-app")
-include(":mpp-library")
-
-listOf(
-    Modules.MultiPlatform.domain,
-    Modules.MultiPlatform.Feature.config,
-    Modules.MultiPlatform.Feature.list
-).forEach { include(it.name) }
+include(":mpp-library:templateModule")

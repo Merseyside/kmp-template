@@ -1,40 +1,74 @@
-/*
- * Copyright 2019 IceRock MAG Inc. Use of this source code is governed by the Apache 2.0 license.
- */
+import dependencies.Deps
+import extensions.isLocalDependencies
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.multiplatform")
-    id("kotlin-android-extensions")
-    id("kotlinx-serialization")
-    id("dev.icerock.mobile.multiplatform")
-    id("dev.icerock.mobile.multiplatform-network-generator")
+    plugin(Plugins.androidLibrary)
+    plugin(Plugins.kotlinMultiplatform)
+    plugin(Plugins.kotlinSerialization)
+    plugin(Plugins.mobileMultiplatform)
+    plugin(Plugins.sqlDelight)
 }
 
 android {
-    compileSdkVersion(Versions.Android.compileSdk)
+    compileSdkVersion(AndroidConfig.COMPILE_SDK_VERSION)
 
     defaultConfig {
-        minSdkVersion(Versions.Android.minSdk)
-        targetSdkVersion(Versions.Android.targetSdk)
+        minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
+        targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
+    }
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
     }
 }
 
+val modulez = listOf(
+    Modules.MultiPlatform.Feature.list,
+    Modules.MultiPlatform.newsApi
+)
+
+val mppLibs = listOf(
+    Deps.MultiPlatform.kotlinStdLib,
+    Deps.MultiPlatform.koin,
+    Deps.MultiPlatform.coroutines,
+    Deps.MultiPlatform.serialization,
+    Deps.MultiPlatform.ktorClient,
+    Deps.MultiPlatform.ktorClientLogging,
+    Deps.MultiPlatform.mokoParcelize,
+    Deps.MultiPlatform.mokoNetwork,
+    Deps.MultiPlatform.settings,
+    Deps.MultiPlatform.sqlDelight
+)
+
+val merseyModules = listOf(
+    Modules.MultiPlatform.MerseyLibs.kmpCleanArch,
+    Modules.MultiPlatform.MerseyLibs.kmpUtils
+)
+
+val merseyLibs = listOf(
+    Deps.MultiPlatform.MerseyLibs.kmpCleanArch,
+    Deps.MultiPlatform.MerseyLibs.kmpUtils
+)
+
 dependencies {
-    mppLibrary(Deps.Libs.MultiPlatform.kotlinStdLib)
-    mppLibrary(Deps.Libs.MultiPlatform.coroutines)
-    mppLibrary(Deps.Libs.MultiPlatform.serialization)
-    mppLibrary(Deps.Libs.MultiPlatform.ktorClient)
-    mppLibrary(Deps.Libs.MultiPlatform.ktorClientLogging)
+    mppLibs.forEach { lib -> mppLibrary(lib) }
+    modulez.forEach { module -> mppModule(module) }
 
-    mppLibrary(Deps.Libs.MultiPlatform.mokoParcelize)
-    mppLibrary(Deps.Libs.MultiPlatform.mokoNetwork)
-
-    mppLibrary(Deps.Libs.MultiPlatform.settings)
-    mppLibrary(Deps.Libs.MultiPlatform.napier)
+    if (isLocalDependencies()) {
+        merseyModules.forEach { module -> mppModule(module) }
+    } else {
+        merseyLibs.forEach { lib -> mppLibrary(lib) }
+    }
 }
 
-openApiGenerate {
-    inputSpec.set(file("src/openapi.yml").path)
-    generatorName.set("kotlin-ktor-client")
+sqldelight {
+    database("TemplateDatabase") {
+        packageName = "com.merseyside.template.data.db"
+        sourceFolders = listOf("sqldelight")
+        schemaOutputDirectory = file("build/dbs")
+    }
+    linkSqlite = false
 }

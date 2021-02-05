@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.TemplateApp.27" parent="Theme.TemplateApp.23">
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+    <style name="Theme.TemplateApp" parent="Theme.TemplateApp.27"/>
+</resources>
