@@ -1,0 +1,3 @@
+[submodule "mersey-kmp-library"]
+	path = mersey-kmp-library
+	url = https://github.com/Merseyside/mersey-kmp-library

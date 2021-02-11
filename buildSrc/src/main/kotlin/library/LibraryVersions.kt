@@ -3,23 +3,24 @@ object LibraryVersions {
     object Application {
         const val packageName = "com.merseyside.merseyLib"
         const val applicationId = "com.merseyside.merseyLib"
+        const val publishingId = "com.github.Merseyside"
+
+        const val version = "1.3.1"
+        const val versionCode = 131
     }
 
     object Android {
         const val compileSdk = 28
         const val targetSdk = 29
         const val minSdk = 21
-
-        const val version = "1.3.1"
-        const val versionCode = 131
     }
 
     object Common {
         const val kotlinStdLib = kotlin
-        const val coroutines = "1.3.8"
+        const val coroutines = "1.4.2-native-mt"
         const val serialization = "1.0.1"
         const val koin = "3.0.0-alpha-4"
-        const val merseyLibs = "1.3.0"
+        const val merseyLibs = "1.3.1"
     }
 
     const val kotlin = "1.4.30"
@@ -39,7 +40,7 @@ object LibraryVersions {
         object Android {
             const val appCompat = "1.2.0"
             const val annotation = "1.2.0-alpha01"
-            const val material = "1.2.1"
+            const val material = "1.3.0"
             const val coroutines = "1.4.2"
             const val fragment = "1.2.5"
             const val constraintLayout = "2.1.0-alpha2"

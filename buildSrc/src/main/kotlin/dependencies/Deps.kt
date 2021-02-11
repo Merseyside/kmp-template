@@ -76,13 +76,10 @@ object Deps {
             common = "org.koin:koin-core:${Versions.Common.koin}"
         )
         val coroutines = MultiPlatformLibrary(
-            android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Common.coroutines}",
-            common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Common.coroutines}",
-            iosX64 = "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:${Versions.Common.coroutines}",
-            iosArm64 = "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:${Versions.Common.coroutines}"
+            common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Common.coroutines}"
         )
         val serialization = MultiPlatformLibrary(
-            common = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.Common.serialization}"
+            common = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.Common.serialization}"
         )
         val mokoParcelize = MultiPlatformLibrary(
             common = "dev.icerock.moko:parcelize:${Versions.MultiPlatform.mokoParcelize}",

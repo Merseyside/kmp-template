@@ -7,10 +7,6 @@ import com.merseyside.template.domain.repository.NewsRepository
 import com.merseyside.template.domain.useCases.GetNewsUseCaseImpl
 import com.merseyside.template.feature.list.domain.useCases.GetListUseCase
 import com.merseyside.template.newsApi.di.newsApiModule
-import dev.icerock.moko.network.exceptionfactory.HttpExceptionFactory
-import dev.icerock.moko.network.exceptionfactory.parser.ErrorExceptionParser
-import dev.icerock.moko.network.features.ExceptionFeature
-import dev.icerock.moko.network.features.TokenFeature
 import io.ktor.client.*
 import io.ktor.client.features.*
 import io.ktor.client.features.logging.*
@@ -44,14 +40,14 @@ val domainModule = module {
 
     single {
         HttpClient {
-            install(ExceptionFeature) {
-                exceptionFactory = HttpExceptionFactory(
-                    defaultParser = ErrorExceptionParser(get()),
-                    customParsers = mapOf(
-                        //HttpStatusCode.UnprocessableEntity.value to ValidationExceptionParser(json)
-                    )
-                )
-            }
+//            install(ExceptionFeature) {
+//                exceptionFactory = HttpExceptionFactory(
+//                    defaultParser = ErrorExceptionParser(get()),
+//                    customParsers = mapOf(
+//                        //HttpStatusCode.UnprocessableEntity.value to ValidationExceptionParser(json)
+//                    )
+//                )
+//            }
             install(Logging) {
                 logger = object : Logger {
                     override fun log(message: String) {
@@ -60,12 +56,12 @@ val domainModule = module {
                 }
                 level = LogLevel.HEADERS
             }
-            install(TokenFeature) {
-                tokenHeaderName = "Authorization"
-                tokenProvider = object : TokenFeature.TokenProvider {
-                    override fun getToken(): String? = "token"
-                }
-            }
+//            install(TokenFeature) {
+//                tokenHeaderName = "Authorization"
+//                tokenProvider = object : TokenFeature.TokenProvider {
+//                    override fun getToken(): String? = "token"
+//                }
+//            }
 
             defaultRequest {
                 accept(ContentType.Application.Json)

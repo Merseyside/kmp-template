@@ -1,0 +1,25 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml:2:1-60
+INJECTED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml:2:1-60
+INJECTED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml:2:1-60
+	package
+		ADDED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml:2:11-57
+		INJECTED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml
+		INJECTED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml:2:1-60
+uses-sdk
+INJECTED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml
+INJECTED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml
+INJECTED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml
+INJECTED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml
+		ADDED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml
+		INJECTED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml
+		ADDED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml
+		INJECTED from /Users/ivan/Documents/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml

@@ -9,7 +9,7 @@ class NewsMapper {
         return list.map {
             News(
                 author = it.author,
-                title = it.title,
+                title = it.title ?: "No title",
                 description = it.description,
                 url = it.url,
                 imageUrl = it.imageUrl

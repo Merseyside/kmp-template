@@ -6,7 +6,7 @@ plugins {
 
 val mppLibs = listOf(
     Deps.MultiPlatform.mokoParcelize,
-    Deps.MultiPlatform.mokoNetwork,
+    //Deps.MultiPlatform.mokoNetwork,
     Deps.MultiPlatform.settings
 )
 

@@ -1,12 +1,11 @@
 import dependencies.Deps
-import extensions.isLocalDependencies
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("multiplatform")
     id("com.android.library")
-    id("kotlin-kapt")
+    kotlin("multiplatform")
     id("dev.icerock.mobile.multiplatform")
+    id("kotlin-kapt")
     id("kotlinx-serialization")
 }
 
@@ -66,18 +65,13 @@ val merseyModules = listOf(
     Modules.MultiPlatform.MerseyLibs.kmpUtils
 )
 
-val merseyLibs = listOf(
-    Deps.MultiPlatform.MerseyLibs.kmpCleanArch,
-    Deps.MultiPlatform.MerseyLibs.kmpUtils
-)
+//val merseyLibs = listOf(
+//    Deps.MultiPlatform.MerseyLibs.kmpCleanArch,
+//    Deps.MultiPlatform.MerseyLibs.kmpUtils
+//)
 
 dependencies {
     mppLibs.forEach { lib -> mppLibrary(lib) }
     androidLibs.forEach { lib -> implementation(lib.name) }
-
-    if (isLocalDependencies()) {
-        merseyModules.forEach { module -> mppModule(module) }
-    } else {
-        merseyLibs.forEach { lib -> mppLibrary(lib) }
-    }
+    merseyModules.forEach { module -> mppModule(module) }
 }

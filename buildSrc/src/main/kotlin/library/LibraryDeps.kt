@@ -1,45 +1,38 @@
 object LibraryDeps {
     object Plugins {
-        val androidApplication = PluginDesc(id = "com.android.application")
-        val kotlinKapt = PluginDesc(id = "kotlin-kapt")
-        val kotlinAndroid = PluginDesc(id = "kotlin-android")
-        val mobileMultiplatform = PluginDesc(id = "dev.icerock.mobile.multiplatform")
+        val androidApplication = GradlePlugin(id = "com.android.application")
+        val kotlinKapt = GradlePlugin(id = "kotlin-kapt")
+        val kotlinAndroid = GradlePlugin(id = "kotlin-android")
+        val mobileMultiplatform = GradlePlugin(id = "dev.icerock.mobile.multiplatform")
+        val iosFramework = GradlePlugin(id = "dev.icerock.mobile.multiplatform.ios-framework")
+        val mavenPublish = GradlePlugin(id = "maven-publish")
 
-        val androidLibrary = PluginDesc(
+        val androidLibrary = GradlePlugin(
             id = "com.android.library",
             module = "com.android.tools.build:gradle:${LibraryVersions.Plugins.gradle}"
         )
 
-        val kotlinMultiplatform = PluginDesc(
+        val kotlinMultiplatform = GradlePlugin(
             id = "org.jetbrains.kotlin.multiplatform",
             module = "org.jetbrains.kotlin:kotlin-gradle-plugin:${LibraryVersions.Plugins.kotlin}"
         )
 
-        val kotlinSerialization = PluginDesc(
+        val kotlinSerialization = GradlePlugin(
             id = "kotlinx-serialization",
             module = "org.jetbrains.kotlin:kotlin-serialization:${LibraryVersions.Plugins.serialization}"
         )
 
-        val jitpack = PluginDesc(
-            id = "com.github.dcendents.android-maven",
-            module = "com.github.dcendents:android-maven-gradle-plugin:${LibraryVersions.Plugins.maven}"
-        )
-
-        val resources = PluginDesc(
+        val resources = GradlePlugin(
             id = "dev.icerock.mobile.multiplatform-resources",
             module = "dev.icerock.moko:resources-generator:${LibraryVersions.Plugins.mokoResources}"
         )
 
-        val mavenPublish = PluginDesc(
-            id = "maven-publish"
-        )
-
-        val sqldelight = PluginDesc(
+        val sqldelight = GradlePlugin(
             id = "com.squareup.sqldelight",
             module = "com.squareup.sqldelight:gradle-plugin:${LibraryVersions.Plugins.sqlDelight}"
         )
 
-        val kotlinParcelize = PluginDesc(
+        val kotlinParcelize = GradlePlugin(
             id = "kotlin-parcelize"
         )
     }
@@ -178,9 +171,10 @@ object LibraryDeps {
             )
             val coroutines = MultiPlatformLibrary(
                 android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${LibraryVersions.Common.coroutines}",
-                common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${LibraryVersions.Common.coroutines}",
-                iosX64 = "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:${LibraryVersions.Common.coroutines}",
-                iosArm64 = "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:${LibraryVersions.Common.coroutines}"
+                common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${LibraryVersions.Common.coroutines}"
+            )
+            val serialization = MultiPlatformLibrary(
+                common = "org.jetbrains.kotlinx:kotlinx-serialization-core:${LibraryVersions.Common.serialization}"
             )
             val serializationJson = MultiPlatformLibrary(
                 common = "org.jetbrains.kotlinx:kotlinx-serialization-json:${LibraryVersions.Common.serialization}"
@@ -210,7 +204,9 @@ object LibraryDeps {
             )
             val sqlDelight = MultiPlatformLibrary(
                 common = "com.squareup.sqldelight:runtime:${LibraryVersions.Libs.MultiPlatform.sqlDelight}",
-                android = "com.squareup.sqldelight:android-driver:${LibraryVersions.Libs.MultiPlatform.sqlDelight}"
+                android = "com.squareup.sqldelight:android-driver:${LibraryVersions.Libs.MultiPlatform.sqlDelight}",
+                iosArm64 = "com.squareup.sqldelight:native-driver:${LibraryVersions.Libs.MultiPlatform.sqlDelight}",
+                iosX64 = "com.squareup.sqldelight:native-driver:${LibraryVersions.Libs.MultiPlatform.sqlDelight}"
             )
         }
     }

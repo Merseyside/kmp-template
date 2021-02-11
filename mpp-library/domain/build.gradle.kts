@@ -1,6 +1,6 @@
 import dependencies.Deps
-import extensions.isLocalDependencies
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     plugin(Plugins.androidLibrary)
@@ -37,8 +37,8 @@ val mppLibs = listOf(
     Deps.MultiPlatform.serialization,
     Deps.MultiPlatform.ktorClient,
     Deps.MultiPlatform.ktorClientLogging,
-    Deps.MultiPlatform.mokoParcelize,
-    Deps.MultiPlatform.mokoNetwork,
+//    Deps.MultiPlatform.mokoParcelize,
+//    Deps.MultiPlatform.mokoNetwork,
     Deps.MultiPlatform.settings,
     Deps.MultiPlatform.sqlDelight
 )
@@ -48,20 +48,25 @@ val merseyModules = listOf(
     Modules.MultiPlatform.MerseyLibs.kmpUtils
 )
 
-val merseyLibs = listOf(
-    Deps.MultiPlatform.MerseyLibs.kmpCleanArch,
-    Deps.MultiPlatform.MerseyLibs.kmpUtils
-)
+//val merseyLibs = listOf(
+//    Deps.MultiPlatform.MerseyLibs.kmpCleanArch,
+//    Deps.MultiPlatform.MerseyLibs.kmpUtils
+//)
+
+kotlin {
+    targets.filterIsInstance<KotlinNativeTarget>().forEach {
+        it.binaries.filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>()
+            .forEach { lib ->
+                lib.isStatic = false
+                lib.linkerOpts.add("-lsqlite3")
+            }
+    }
+}
 
 dependencies {
     mppLibs.forEach { lib -> mppLibrary(lib) }
     modulez.forEach { module -> mppModule(module) }
-
-    if (isLocalDependencies()) {
-        merseyModules.forEach { module -> mppModule(module) }
-    } else {
-        merseyLibs.forEach { lib -> mppLibrary(lib) }
-    }
+    merseyModules.forEach { module -> mppModule(module) }
 }
 
 sqldelight {
@@ -70,5 +75,5 @@ sqldelight {
         sourceFolders = listOf("sqldelight")
         schemaOutputDirectory = file("build/dbs")
     }
-    linkSqlite = false
+    linkSqlite = true
 }
