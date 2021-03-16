@@ -1,6 +1,6 @@
 package com.merseyside.template.feature.list.presentation
 
-import com.merseyside.kmpMerseyLib.presentation.di.SavedStateViewModel
+import com.merseyside.kmpMerseyLib.arch.presentation.di.SavedStateViewModel
 import com.merseyside.kmpMerseyLib.utils.SavedState
 import com.merseyside.kmpMerseyLib.utils.ext.log
 import com.merseyside.kmpMerseyLib.utils.ext.logMsg

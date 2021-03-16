@@ -76,10 +76,10 @@ object Deps {
             common = "org.koin:koin-core:${Versions.Common.koin}"
         )
         val coroutines = MultiPlatformLibrary(
-            android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Common.coroutines}",
-            common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Common.coroutines}",
-            iosX64 = "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:${Versions.Common.coroutines}",
-            iosArm64 = "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:${Versions.Common.coroutines}"
+            android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${LibraryVersions.Common.coroutines}",
+            common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${LibraryVersions.Common.coroutines}",
+            iosX64 = "org.jetbrains.kotlinx:kotlinx-coroutines-core-iosx64:${LibraryVersions.Common.coroutines}",
+            iosArm64 = "org.jetbrains.kotlinx:kotlinx-coroutines-core-iosarm64:${LibraryVersions.Common.coroutines}"
         )
         val serialization = MultiPlatformLibrary(
             common = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.Common.serialization}"
@@ -90,9 +90,9 @@ object Deps {
             iosArm64 = "dev.icerock.moko:parcelize-iosarm64:${Versions.MultiPlatform.mokoParcelize}"
         )
         val mokoMvvm = MultiPlatformLibrary(
-            common = "dev.icerock.moko:mvvm:${Versions.MultiPlatform.mokoMvvm}",
-            iosX64 = "dev.icerock.moko:mvvm-iosx64:${Versions.MultiPlatform.mokoMvvm}",
-            iosArm64 = "dev.icerock.moko:mvvm-iosarm64:${Versions.MultiPlatform.mokoMvvm}"
+            common = "dev.icerock.moko:mvvm:${Versions.Common.mokoMvvm}",
+            iosX64 = "dev.icerock.moko:mvvm-iosx64:${Versions.Common.mokoMvvm}",
+            iosArm64 = "dev.icerock.moko:mvvm-iosarm64:${Versions.Common.mokoMvvm}"
         )
         val mokoResources = MultiPlatformLibrary(
             common = "dev.icerock.moko:resources:${Versions.MultiPlatform.mokoResources}",
@@ -118,10 +118,10 @@ object Deps {
             common = "com.russhwolf:multiplatform-settings:${Versions.MultiPlatform.settings}"
         )
         val sqlDelight = MultiPlatformLibrary(
-            common = "com.squareup.sqldelight:runtime:${LibraryVersions.Libs.MultiPlatform.sqlDelight}",
-            android = "com.squareup.sqldelight:android-driver:${LibraryVersions.Libs.MultiPlatform.sqlDelight}",
-            iosArm64 = "com.squareup.sqldelight:native-driver:${LibraryVersions.Libs.MultiPlatform.sqlDelight}",
-            iosX64 = "com.squareup.sqldelight:native-driver:${LibraryVersions.Libs.MultiPlatform.sqlDelight}"
+            common = "com.squareup.sqldelight:runtime:${Versions.MultiPlatform.sqlDelight}",
+            android = "com.squareup.sqldelight:android-driver:${Versions.MultiPlatform.sqlDelight}",
+            iosArm64 = "com.squareup.sqldelight:native-driver:${Versions.MultiPlatform.sqlDelight}",
+            iosX64 = "com.squareup.sqldelight:native-driver:${Versions.MultiPlatform.sqlDelight}"
         )
 
         object MerseyLibs {

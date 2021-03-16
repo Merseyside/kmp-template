@@ -1,6 +1,6 @@
 package com.merseyside.template.fragments.main.di
 
-import com.merseyside.kmpMerseyLib.presentation.di.savedStateViewModel
+import com.merseyside.kmpMerseyLib.arch.presentation.di.savedStateViewModel
 import com.merseyside.template.fragments.main.view.NewsFragment
 import com.merseyside.template.mppLibrary.NewsEventsDispatcher
 import com.merseyside.template.mppLibrary.NewsViewModel
