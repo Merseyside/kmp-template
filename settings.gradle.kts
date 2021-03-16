@@ -6,17 +6,16 @@ include(
     ":mpp-library:library:newsApi"
 )
 
-private val isLocalDependencies = false
-
-include(":kmp-clean-mvvm-arch")
-project(":kmp-clean-mvvm-arch").projectDir =
-    File("mersey-kmp-library/kmp-clean-mvvm-arch")
-
-include(":kmp-utils")
-project(":kmp-utils").projectDir =
-    File("mersey-kmp-library/kmp-utils")
+private val isLocalDependencies = true
 
 if (isLocalDependencies) {
+    include(":kmp-clean-mvvm-arch")
+    project(":kmp-clean-mvvm-arch").projectDir =
+        File(rootDir.parent, "mersey-kmp-library/kmp-clean-mvvm-arch")
+
+    include(":kmp-utils")
+    project(":kmp-utils").projectDir =
+        File(rootDir.parent, "mersey-kmp-library/kmp-utils")
 
     include(":utils")
     project(":utils").projectDir =
