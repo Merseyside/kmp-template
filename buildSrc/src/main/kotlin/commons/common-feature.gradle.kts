@@ -48,7 +48,7 @@ val androidLibs = listOf(
     Deps.Android.appCompat,
     Deps.Android.coroutines,
     Deps.Android.serialization,
-    Deps.Android.koinViewModels
+    Deps.Android.koin
 )
 
 val mppLibs = listOf(
@@ -56,8 +56,7 @@ val mppLibs = listOf(
     Deps.MultiPlatform.koin,
     Deps.MultiPlatform.coroutines,
     Deps.MultiPlatform.mokoMvvm,
-    Deps.MultiPlatform.mokoResources,
-    Deps.MultiPlatform.mokoUnits
+    Deps.MultiPlatform.mokoResources
 )
 
 val merseyModules = listOf(
@@ -65,13 +64,18 @@ val merseyModules = listOf(
     Modules.MultiPlatform.MerseyLibs.kmpUtils
 )
 
-//val merseyLibs = listOf(
-//    Deps.MultiPlatform.MerseyLibs.kmpCleanArch,
-//    Deps.MultiPlatform.MerseyLibs.kmpUtils
-//)
+val merseyLibs = listOf(
+    Deps.MultiPlatform.MerseyLibs.kmpCleanArch,
+    Deps.MultiPlatform.MerseyLibs.kmpUtils
+)
 
 dependencies {
     mppLibs.forEach { lib -> mppLibrary(lib) }
     androidLibs.forEach { lib -> implementation(lib.name) }
-    merseyModules.forEach { module -> mppModule(module) }
+
+    if (isLocalDependencies()) {
+        merseyModules.forEach { module -> mppModule(module) }
+    } else {
+        merseyLibs.forEach { lib -> mppLibrary(lib) }
+    }
 }

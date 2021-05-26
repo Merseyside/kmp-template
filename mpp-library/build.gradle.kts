@@ -1,14 +1,14 @@
 import dependencies.Deps
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import extensions.isLocalDependencies
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     plugin(Plugins.androidLibrary)
     plugin(Plugins.kotlinMultiplatform)
     plugin(Plugins.mobileMultiplatform)
     plugin(Plugins.multiplatformResources)
+    plugin(Plugins.kotlinParcelize)
     plugin(Plugins.iosFramework)
+    plugin(Plugins.sqlDelight)
 }
 
 android {
@@ -37,10 +37,14 @@ kotlin {
         iosX64("ios")
     }
 
-    targets.getByName<KotlinNativeTarget>("ios") {
-        binaries.framework {
-            baseName = "common"
-            linkerOpts.add("-lsqlite3")
+    targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java).all {
+        val arch = when (this.konanTarget) {
+            org.jetbrains.kotlin.konan.target.KonanTarget.IOS_ARM64 -> "iosarm64"
+            org.jetbrains.kotlin.konan.target.KonanTarget.IOS_X64 -> "iosx64"
+            else -> throw IllegalArgumentException()
+        }
+        binaries.withType(org.jetbrains.kotlin.gradle.plugin.mpp.Framework::class.java).all {
+            export("${Deps.MultiPlatform.mokoMvvm.common}-$arch:${Versions.Common.mokoMvvm}")
         }
     }
 }
@@ -52,8 +56,7 @@ val mppLibs = listOf(
     Deps.MultiPlatform.settings,
     Deps.MultiPlatform.mokoParcelize,
     Deps.MultiPlatform.mokoResources,
-    Deps.MultiPlatform.mokoMvvm,
-    Deps.MultiPlatform.mokoUnits
+    Deps.MultiPlatform.mokoMvvm
 )
 val mppModules = listOf(
     Modules.MultiPlatform.domain,

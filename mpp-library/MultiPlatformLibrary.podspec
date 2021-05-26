@@ -8,7 +8,7 @@ Pod::Spec.new do |spec|
     spec.summary                  = 'Shared code between iOS and Android'
 
     spec.vendored_frameworks      = "build/cocoapods/framework/#{spec.name}.framework"
-    spec.libraries                = "c++"
+    spec.libraries                = "c++, sqlite3"
     spec.module_name              = "#{spec.name}_umbrella"
 
     spec.ios.deployment_target  = '11.0'
@@ -27,12 +27,12 @@ Pod::Spec.new do |spec|
             :execution_position => :before_compile,
             :shell_path => '/bin/sh',
             :script => <<-SCRIPT
-MPP_PROJECT_ROOT="$SRCROOT/../../mpp-library"
+                MPP_PROJECT_ROOT="$SRCROOT/../../mpp-library"
 
-MPP_OUTPUT_DIR="$MPP_PROJECT_ROOT/build/cocoapods/framework"
-MPP_OUTPUT_NAME="$MPP_OUTPUT_DIR/#{spec.name}.framework"
+                MPP_OUTPUT_DIR="$MPP_PROJECT_ROOT/build/cocoapods/framework"
+                MPP_OUTPUT_NAME="$MPP_OUTPUT_DIR/#{spec.name}.framework"
 
-"$MPP_PROJECT_ROOT/../gradlew" -p "$MPP_PROJECT_ROOT" "$GRADLE_TASK"
+                "$MPP_PROJECT_ROOT/../gradlew" -p "$MPP_PROJECT_ROOT" "$GRADLE_TASK"
             SCRIPT
         }
     ]

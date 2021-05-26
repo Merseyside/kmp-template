@@ -16,11 +16,14 @@ object Deps {
         val coroutines = AndroidLibrary(
             name = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Common.coroutines}"
         )
-        val koinViewModels = AndroidLibrary(
-            name = "org.koin:koin-androidx-viewmodel:${Versions.Common.koin}"
+        val koin = AndroidLibrary(
+            name = "io.insert-koin:koin-android:${Versions.Common.koin}"
         )
         val koinExt = AndroidLibrary(
-            name = "org.koin:koin-androidx-ext:${Versions.Common.koin}"
+            name = "io.insert-koin:koin-android-ext:${Versions.Common.koin}"
+        )
+        val koinCompose = AndroidLibrary(
+            name = "io.insert-koin:koin-androidx-compose:${Versions.Common.koin}"
         )
         val navigation = AndroidLibrary(
             name = "androidx.navigation:navigation-fragment-ktx:${Versions.Android.navigation}"
@@ -44,10 +47,10 @@ object Deps {
             name = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.Android.lifecycle}"
         )
         val mokoMvvmDatabinding = AndroidLibrary(
-            name = "dev.icerock.moko:mvvm-databinding:${Versions.Android.mokoMvvm}"
+            name = "dev.icerock.moko:mvvm-databinding:${Versions.Common.mokoMvvm}"
         )
         val mokoMvvmViewbinding = AndroidLibrary(
-            name = "dev.icerock.moko:mvvm-viewbinding:${Versions.Android.mokoMvvm}"
+            name = "dev.icerock.moko:mvvm-viewbinding:${Versions.Common.mokoMvvm}"
         )
 
         object MerseyLibs {
@@ -73,7 +76,10 @@ object Deps {
             common = "io.ktor:ktor-client-logging:${Versions.MultiPlatform.ktorClientLogging}"
         )
         val koin = MultiPlatformLibrary(
-            common = "org.koin:koin-core:${Versions.Common.koin}"
+            common = "io.insert-koin:koin-core:${LibraryVersions.Common.koin}",
+            android = "io.insert-koin:koin-android:${LibraryVersions.Common.koin}",
+            iosX64 = "io.insert-koin:koin-core-iosx64:${LibraryVersions.Common.koin}",
+            iosArm64 = "io.insert-koin:koin-core-iosarm64:${LibraryVersions.Common.koin}"
         )
         val coroutines = MultiPlatformLibrary(
             android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${LibraryVersions.Common.coroutines}",
@@ -85,9 +91,7 @@ object Deps {
             common = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.Common.serialization}"
         )
         val mokoParcelize = MultiPlatformLibrary(
-            common = "dev.icerock.moko:parcelize:${Versions.MultiPlatform.mokoParcelize}",
-            iosX64 = "dev.icerock.moko:parcelize-iosx64:${Versions.MultiPlatform.mokoParcelize}",
-            iosArm64 = "dev.icerock.moko:parcelize-iosarm64:${Versions.MultiPlatform.mokoParcelize}"
+            common = "dev.icerock.moko:parcelize:${Versions.MultiPlatform.mokoParcelize}"
         )
         val mokoMvvm = MultiPlatformLibrary(
             common = "dev.icerock.moko:mvvm:${Versions.Common.mokoMvvm}",
@@ -109,11 +113,7 @@ object Deps {
             iosX64 = "dev.icerock.moko:network-iosx64:${Versions.MultiPlatform.mokoNetwork}",
             iosArm64 = "dev.icerock.moko:network-iosarm64:${Versions.MultiPlatform.mokoNetwork}"
         )
-        val mokoUnits = MultiPlatformLibrary(
-            common = "dev.icerock.moko:units:${Versions.MultiPlatform.mokoUnits}",
-            iosX64 = "dev.icerock.moko:units-iosx64:${Versions.MultiPlatform.mokoUnits}",
-            iosArm64 = "dev.icerock.moko:units-iosarm64:${Versions.MultiPlatform.mokoUnits}"
-        )
+
         val settings = MultiPlatformLibrary(
             common = "com.russhwolf:multiplatform-settings:${Versions.MultiPlatform.settings}"
         )
@@ -125,7 +125,7 @@ object Deps {
         )
 
         object MerseyLibs {
-            private const val base = "com.github.Merseyside.mersey-android-library"
+            private const val base = "io.github.merseyside"
 
             val kmpCleanArch = MultiPlatformLibrary(
                 common = "$base:kmp-clean-mvvm-arch:${Versions.Common.merseyLibs}",

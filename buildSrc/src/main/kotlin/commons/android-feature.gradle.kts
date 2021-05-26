@@ -44,7 +44,7 @@ android {
 val androidLibs = listOf(
     Deps.Android.appCompat,
     Deps.Android.coroutines,
-    Deps.Android.koinViewModels
+    Deps.Android.koin
 )
 
 dependencies {

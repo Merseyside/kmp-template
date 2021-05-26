@@ -5,7 +5,7 @@
 5    <uses-sdk
 6        android:minSdkVersion="21"
 6-->/home/ivan/Документы/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml
-7        android:targetSdkVersion="29" />
+7        android:targetSdkVersion="30" />
 7-->/home/ivan/Документы/Workspace/kmp-template/mpp-library/feature/list/src/androidMain/AndroidManifest.xml
 8
 9</manifest>

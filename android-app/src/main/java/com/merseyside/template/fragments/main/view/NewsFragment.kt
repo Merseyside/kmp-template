@@ -33,7 +33,7 @@ class NewsFragment: BaseAppFragment<FragmentNewsBinding, NewsViewModel, NewsEven
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getBinding().news.adapter = adapter
+        requireBinding().news.adapter = adapter
         viewModel.getList().ld().observe(viewLifecycleOwner, newsObserver)
     }
 

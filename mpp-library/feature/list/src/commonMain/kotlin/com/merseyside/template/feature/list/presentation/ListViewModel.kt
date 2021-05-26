@@ -1,6 +1,6 @@
 package com.merseyside.template.feature.list.presentation
 
-import com.merseyside.kmpMerseyLib.arch.presentation.di.SavedStateViewModel
+import com.merseyside.kmpMerseyLib.arch.presentation.di.StateViewModel
 import com.merseyside.kmpMerseyLib.utils.SavedState
 import com.merseyside.kmpMerseyLib.utils.ext.log
 import com.merseyside.kmpMerseyLib.utils.ext.logMsg
@@ -13,7 +13,7 @@ import dev.icerock.moko.mvvm.livedata.MutableLiveData
 class ListViewModel<T>(
     override val eventsDispatcher: EventsDispatcher<EventsListener>,
     private val getListUseCase: GetListUseCase<T>
-) : SavedStateViewModel(), EventsDispatcherOwner<ListViewModel.EventsListener> {
+) : StateViewModel(), EventsDispatcherOwner<ListViewModel.EventsListener> {
 
     private val listLiveData = MutableLiveData(initialValue = emptyList<T>())
     fun getList(): LiveData<List<T>> = listLiveData
