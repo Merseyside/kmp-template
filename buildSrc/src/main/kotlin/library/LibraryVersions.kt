@@ -14,7 +14,7 @@ object LibraryVersions {
 
     object Common {
         const val kotlinStdLib = kotlin
-        const val coroutines = "1.5.0-native-mt"
+        const val coroutines = "1.4.2"
         const val serialization = "1.2.1"
         const val koin = "3.0.2"
         const val merseyLibs = "1.3.5"
@@ -31,7 +31,6 @@ object LibraryVersions {
         const val serialization = LibraryVersions.kotlin
         const val mokoResources = LibraryVersions.mokoResources
         const val sqlDelight = "1.5.0"
-
     }
 
     object Libs {
@@ -44,7 +43,7 @@ object LibraryVersions {
         const val cardView = "1.0.0"
         const val recyclerView = "1.1.0"
         const val navigation = "2.3.2"
-        const val dagger = "2.34"
+        const val dagger = "2.35.1"
         const val paging = "2.1.2"
         const val billing = "3.0.1"
         const val publisher = "v3-rev142-1.25.0"

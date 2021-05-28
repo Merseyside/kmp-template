@@ -1,57 +1,21 @@
-package dependencies
-
-import AndroidLibrary
-import MultiPlatformLibrary
-import Versions
-
 object Deps {
     
     object Android {
-        val appCompat = AndroidLibrary(
-            name = "androidx.appcompat:appcompat:${Versions.Android.appCompat}"
-        )
-        val material = AndroidLibrary(
-            name = "com.google.android.material:material:${Versions.Android.material}"
-        )
-        val coroutines = AndroidLibrary(
-            name = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Common.coroutines}"
-        )
-        val koin = AndroidLibrary(
-            name = "io.insert-koin:koin-android:${Versions.Common.koin}"
-        )
-        val koinExt = AndroidLibrary(
-            name = "io.insert-koin:koin-android-ext:${Versions.Common.koin}"
-        )
-        val koinCompose = AndroidLibrary(
-            name = "io.insert-koin:koin-androidx-compose:${Versions.Common.koin}"
-        )
-        val navigation = AndroidLibrary(
-            name = "androidx.navigation:navigation-fragment-ktx:${Versions.Android.navigation}"
-        )
-        val navigationUi = AndroidLibrary(
-            name = "androidx.navigation:navigation-ui-ktx:${Versions.Android.navigation}"
-        )
-        val serialization = AndroidLibrary(
-            name = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.Common.serialization}"
-        )
-        val recyclerView = AndroidLibrary(
-            name = "androidx.recyclerview:recyclerview:${Versions.Android.recyclerView}"
-        )
-        val constraintLayout = AndroidLibrary(
-            name = "androidx.constraintlayout:constraintlayout:${Versions.Android.constraintLayout}"
-        )
-        val lifecycleViewModel = AndroidLibrary(
-            name = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Android.lifecycle}"
-        )
-        val lifecycleLiveDataKtx = AndroidLibrary(
-            name = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.Android.lifecycle}"
-        )
-        val mokoMvvmDatabinding = AndroidLibrary(
-            name = "dev.icerock.moko:mvvm-databinding:${Versions.Common.mokoMvvm}"
-        )
-        val mokoMvvmViewbinding = AndroidLibrary(
-            name = "dev.icerock.moko:mvvm-viewbinding:${Versions.Common.mokoMvvm}"
-        )
+        val appCompat = "androidx.appcompat:appcompat:${Versions.Android.appCompat}"
+        val material = "com.google.android.material:material:${Versions.Android.material}"
+        val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Common.coroutines}"
+        val koin = "io.insert-koin:koin-android:${Versions.Common.koin}"
+        val koinExt = "io.insert-koin:koin-android-ext:${Versions.Common.koin}"
+        val koinCompose = "io.insert-koin:koin-androidx-compose:${Versions.Common.koin}"
+        val navigation = "androidx.navigation:navigation-fragment-ktx:${Versions.Android.navigation}"
+        val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.Android.navigation}"
+        val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.Common.serialization}"
+        val recyclerView = "androidx.recyclerview:recyclerview:${Versions.Android.recyclerView}"
+        val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.Android.constraintLayout}"
+        val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Android.lifecycle}"
+        val lifecycleLiveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.Android.lifecycle}"
+        val mokoMvvmDatabinding = "dev.icerock.moko:mvvm-databinding:${Versions.Common.mokoMvvm}"
+        val mokoMvvmViewbinding = "dev.icerock.moko:mvvm-viewbinding:${Versions.Common.mokoMvvm}"
 
         object MerseyLibs {
             private const val base = "com.github.Merseyside.mersey-android-library"
@@ -63,79 +27,36 @@ object Deps {
     }
 
     object MultiPlatform {
-        val kotlinStdLib = MultiPlatformLibrary(
-            common = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.MultiPlatform.kotlinStdLib}"
-        )
-        val ktorClient = MultiPlatformLibrary(
-            android = "io.ktor:ktor-client-android:${Versions.MultiPlatform.ktorClient}",
-            common = "io.ktor:ktor-client-core:${Versions.MultiPlatform.ktorClient}",
-            iosX64 = "io.ktor:ktor-client-ios:${Versions.MultiPlatform.ktorClient}",
-            iosArm64 = "io.ktor:ktor-client-ios:${Versions.MultiPlatform.ktorClient}"
-        )
-        val ktorClientLogging = MultiPlatformLibrary(
-            common = "io.ktor:ktor-client-logging:${Versions.MultiPlatform.ktorClientLogging}"
-        )
-        val koin = MultiPlatformLibrary(
-            common = "io.insert-koin:koin-core:${LibraryVersions.Common.koin}",
-            android = "io.insert-koin:koin-android:${LibraryVersions.Common.koin}",
-            iosX64 = "io.insert-koin:koin-core-iosx64:${LibraryVersions.Common.koin}",
-            iosArm64 = "io.insert-koin:koin-core-iosarm64:${LibraryVersions.Common.koin}"
-        )
-        val coroutines = MultiPlatformLibrary(
-            android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${LibraryVersions.Common.coroutines}",
-            common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${LibraryVersions.Common.coroutines}",
-            iosX64 = "org.jetbrains.kotlinx:kotlinx-coroutines-core-iosx64:${LibraryVersions.Common.coroutines}",
-            iosArm64 = "org.jetbrains.kotlinx:kotlinx-coroutines-core-iosarm64:${LibraryVersions.Common.coroutines}"
-        )
-        val serialization = MultiPlatformLibrary(
-            common = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.Common.serialization}"
-        )
-        val mokoParcelize = MultiPlatformLibrary(
-            common = "dev.icerock.moko:parcelize:${Versions.MultiPlatform.mokoParcelize}"
-        )
-        val mokoMvvm = MultiPlatformLibrary(
-            common = "dev.icerock.moko:mvvm:${Versions.Common.mokoMvvm}",
-            iosX64 = "dev.icerock.moko:mvvm-iosx64:${Versions.Common.mokoMvvm}",
-            iosArm64 = "dev.icerock.moko:mvvm-iosarm64:${Versions.Common.mokoMvvm}"
-        )
-        val mokoResources = MultiPlatformLibrary(
-            common = "dev.icerock.moko:resources:${Versions.MultiPlatform.mokoResources}",
-            iosX64 = "dev.icerock.moko:resources-iosx64:${Versions.MultiPlatform.mokoResources}",
-            iosArm64 = "dev.icerock.moko:resources-iosarm64:${Versions.MultiPlatform.mokoResources}"
-        )
-        val mokoPermissions = MultiPlatformLibrary(
-            common = "dev.icerock.moko:permissions:${Versions.MultiPlatform.mokoPermissions}",
-            iosX64 = "dev.icerock.moko:permissions-iosx64:${Versions.MultiPlatform.mokoPermissions}",
-            iosArm64 = "dev.icerock.moko:permissions-iosarm64:${Versions.MultiPlatform.mokoPermissions}"
-        )
-        val mokoNetwork = MultiPlatformLibrary(
-            common = "dev.icerock.moko:network:${Versions.MultiPlatform.mokoNetwork}",
-            iosX64 = "dev.icerock.moko:network-iosx64:${Versions.MultiPlatform.mokoNetwork}",
-            iosArm64 = "dev.icerock.moko:network-iosarm64:${Versions.MultiPlatform.mokoNetwork}"
-        )
+        const val ktorClient = "io.ktor:ktor-client-core:${Versions.MultiPlatform.ktorClient}"
+        const val ktorClientLogging = "io.ktor:ktor-client-logging:${Versions.MultiPlatform.ktorClientLogging}"
+        const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${LibraryVersions.Common.coroutines}"
+        const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.Common.serialization}"
 
-        val settings = MultiPlatformLibrary(
-            common = "com.russhwolf:multiplatform-settings:${Versions.MultiPlatform.settings}"
-        )
-        val sqlDelight = MultiPlatformLibrary(
-            common = "com.squareup.sqldelight:runtime:${Versions.MultiPlatform.sqlDelight}",
-            android = "com.squareup.sqldelight:android-driver:${Versions.MultiPlatform.sqlDelight}",
-            iosArm64 = "com.squareup.sqldelight:native-driver:${Versions.MultiPlatform.sqlDelight}",
-            iosX64 = "com.squareup.sqldelight:native-driver:${Versions.MultiPlatform.sqlDelight}"
-        )
+        val koin = "io.insert-koin:koin-core:${LibraryVersions.Common.koin}"
+            .defaultMPL(ios = true)
+        val mokoParcelize = "dev.icerock.moko:parcelize:${Versions.MultiPlatform.mokoParcelize}"
+            .defaultMPL(ios = true)
+        val mokoMvvm =  "dev.icerock.moko:mvvm-core:${Versions.Common.mokoMvvm}"
+            .defaultMPL(ios = true)
+        val mokoResources = "dev.icerock.moko:resources:${Versions.MultiPlatform.mokoResources}"
+            .defaultMPL(ios = true)
+        val mokoPermissions = "dev.icerock.moko:permissions:${Versions.MultiPlatform.mokoPermissions}"
+            .defaultMPL(ios = true)
+        val mokoNetwork = "dev.icerock.moko:network:${Versions.MultiPlatform.mokoNetwork}"
+            .defaultMPL(ios = true)
+        val settings = "com.russhwolf:multiplatform-settings:${Versions.MultiPlatform.settings}"
+            .defaultMPL(ios = true)
+        val sqlDelight = "com.squareup.sqldelight:runtime:${Versions.MultiPlatform.sqlDelight}"
+            .defaultMPL(ios = true)
 
         object MerseyLibs {
             private const val base = "io.github.merseyside"
 
-            val kmpCleanArch = MultiPlatformLibrary(
-                common = "$base:kmp-clean-mvvm-arch:${Versions.Common.merseyLibs}",
-                android = "$base:kmp-clean-mvvm-arch-android:${Versions.Common.merseyLibs}"
-            )
+            val kmpCleanArch = "$base:kmp-clean-mvvm-arch:${Versions.Common.merseyLibs}"
+                .defaultMPL()
 
-            val kmpUtils = MultiPlatformLibrary(
-                common = "$base:kmp-utils:${Versions.Common.merseyLibs}",
-                android = "$base:kmp-utils-android:${Versions.Common.merseyLibs}"
-            )
+            val kmpUtils = "$base:kmp-utils:${Versions.Common.merseyLibs}"
+                .defaultMPL()
         }
     }
 }

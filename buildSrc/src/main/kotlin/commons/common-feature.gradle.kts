@@ -1,11 +1,11 @@
-import dependencies.Deps
+
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
     id("dev.icerock.mobile.multiplatform")
-    id("kotlin-kapt")
+    kotlin("kapt")
     id("kotlinx-serialization")
 }
 
@@ -52,9 +52,7 @@ val androidLibs = listOf(
 )
 
 val mppLibs = listOf(
-    Deps.MultiPlatform.kotlinStdLib,
     Deps.MultiPlatform.koin,
-    Deps.MultiPlatform.coroutines,
     Deps.MultiPlatform.mokoMvvm,
     Deps.MultiPlatform.mokoResources
 )
@@ -70,12 +68,15 @@ val merseyLibs = listOf(
 )
 
 dependencies {
-    mppLibs.forEach { lib -> mppLibrary(lib) }
-    androidLibs.forEach { lib -> implementation(lib.name) }
+    commonMainImplementation(Deps.MultiPlatform.coroutines)
+    commonMainImplementation(project(Modules.MultiPlatform.domain.name))
+
+    mppLibs.forEach { lib -> commonMainImplementation(lib.common) }
+    androidLibs.forEach { lib -> androidMainImplementation(lib) }
 
     if (isLocalDependencies()) {
-        merseyModules.forEach { module -> mppModule(module) }
+        merseyModules.forEach { module -> commonMainImplementation(project(module.name)) }
     } else {
-        merseyLibs.forEach { lib -> mppLibrary(lib) }
+        merseyLibs.forEach { lib -> commonMainImplementation(lib.common) }
     }
 }

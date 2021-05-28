@@ -1,4 +1,4 @@
-import dependencies.Deps
+
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -103,7 +103,7 @@ val merseyModules = listOf(
 dependencies {
     implementation(project(Modules.MultiPlatform.mppLibrary))
 
-    androidLibs.forEach { lib -> androidImplementation(lib) }
+    androidLibs.forEach { lib -> implementation(lib) }
 
     if (isLocalDependencies()) {
         merseyModules.forEach { lib -> implementation(project(lib)) }

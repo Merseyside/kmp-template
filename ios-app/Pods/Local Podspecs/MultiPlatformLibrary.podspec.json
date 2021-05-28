@@ -10,7 +10,10 @@
   "license": "",
   "summary": "Shared code between iOS and Android",
   "vendored_frameworks": "build/cocoapods/framework/MultiPlatformLibrary.framework",
-  "libraries": "c++",
+  "libraries": [
+    "c++",
+    "sqlite3"
+  ],
   "module_name": "MultiPlatformLibrary_umbrella",
   "platforms": {
     "ios": "11.0"
@@ -27,7 +30,7 @@
       "name": "Compile Kotlin/Native",
       "execution_position": "before_compile",
       "shell_path": "/bin/sh",
-      "script": "MPP_PROJECT_ROOT=\"$SRCROOT/../../mpp-library\"\n\nMPP_OUTPUT_DIR=\"$MPP_PROJECT_ROOT/build/cocoapods/framework\"\nMPP_OUTPUT_NAME=\"$MPP_OUTPUT_DIR/MultiPlatformLibrary.framework\"\n\n\"$MPP_PROJECT_ROOT/../gradlew\" -p \"$MPP_PROJECT_ROOT\" \"$GRADLE_TASK\"\n"
+      "script": "                MPP_PROJECT_ROOT=\"$SRCROOT/../../mpp-library\"\n\n                MPP_OUTPUT_DIR=\"$MPP_PROJECT_ROOT/build/cocoapods/framework\"\n                MPP_OUTPUT_NAME=\"$MPP_OUTPUT_DIR/MultiPlatformLibrary.framework\"\n\n                \"$MPP_PROJECT_ROOT/../gradlew\" -p \"$MPP_PROJECT_ROOT\" \"$GRADLE_TASK\"\n"
     }
   ]
 }

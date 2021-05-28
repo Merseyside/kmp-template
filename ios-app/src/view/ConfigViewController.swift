@@ -1,18 +1,15 @@
-/*
- * Copyright 2019 IceRock MAG Inc. Use of this source code is governed by the Apache 2.0 license.
- */
-
 import Foundation
 import UIKit
 import MultiPlatformLibrary
 import MultiPlatformLibraryMvvm
 import SkyFloatingLabelTextField
+import Alamofire
 
 class ConfigViewController: UIViewController {
     @IBOutlet private var tokenField: SkyFloatingLabelTextField!
     @IBOutlet private var languageField: SkyFloatingLabelTextField!
     
-    private var viewModel: ConfigViewModel!
+    private var viewModel: ListViewModel<News>!
     
     override func viewDidLoad() {
         super.viewDidLoad()

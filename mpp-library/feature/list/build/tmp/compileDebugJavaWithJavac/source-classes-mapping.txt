@@ -1,2 +1,0 @@
-com/merseyside/template/feature/list/BuildConfig.java
- com.merseyside.template.feature.list.BuildConfig

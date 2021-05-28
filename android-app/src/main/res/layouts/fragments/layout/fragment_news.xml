@@ -5,12 +5,12 @@
     tools:context="com.merseyside.template.fragments.main.view.NewsFragment">
 
     <data>
-        <import type="com.merseyside.template.feature.list.presentation.ListViewModel" />
+        <import type="com.merseyside.template.feature.news.presentation.NewsViewModel" />
         <import type="com.merseyside.template.domain.entity.News" />
 
         <variable
             name="viewModel"
-            type="ListViewModel&lt;News&gt;" />
+            type="NewsViewModel" />
 
     </data>
 

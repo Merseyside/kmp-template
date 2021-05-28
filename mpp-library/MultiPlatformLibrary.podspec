@@ -8,7 +8,7 @@ Pod::Spec.new do |spec|
     spec.summary                  = 'Shared code between iOS and Android'
 
     spec.vendored_frameworks      = "build/cocoapods/framework/#{spec.name}.framework"
-    spec.libraries                = "c++, sqlite3"
+    spec.libraries                = "c++", 'sqlite3'
     spec.module_name              = "#{spec.name}_umbrella"
 
     spec.ios.deployment_target  = '11.0'

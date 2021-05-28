@@ -2,7 +2,9 @@ include(
     ":android-app",
     ":mpp-library",
     ":mpp-library:domain",
-    ":mpp-library:feature:list",
+    ":mpp-library:core",
+
+    ":mpp-library:feature:news",
     ":mpp-library:library:newsApi"
 )
 

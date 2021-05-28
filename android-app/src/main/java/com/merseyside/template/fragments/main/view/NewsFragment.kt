@@ -10,9 +10,9 @@ import com.merseyside.template.R
 import com.merseyside.template.base.BaseAppFragment
 import com.merseyside.template.databinding.FragmentNewsBinding
 import com.merseyside.template.domain.entity.News
+import com.merseyside.template.feature.news.presentation.NewsViewModel
 import com.merseyside.template.fragments.main.adapter.NewsAdapter
 import com.merseyside.template.mppLibrary.NewsEventsListener
-import com.merseyside.template.mppLibrary.NewsViewModel
 import com.merseyside.utils.openUrl
 
 class NewsFragment: BaseAppFragment<FragmentNewsBinding, NewsViewModel, NewsEventsListener>(),

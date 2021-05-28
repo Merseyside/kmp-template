@@ -9,7 +9,7 @@ object Versions {
     }
 
     object Common {
-        const val coroutines = "1.5.0-native-mt"
+        const val coroutines = "1.4.2"
         const val serialization = "1.2.1"
         const val merseyLibs = "1.3.5"
         const val koin = "3.0.2"
@@ -28,16 +28,15 @@ object Versions {
     object MultiPlatform {
         const val kotlinStdLib = kotlin
 
-        const val ktorClient = "1.5.2"
+        const val ktorClient = "1.5.4"
         const val ktorClientLogging = ktorClient
 
         const val mokoResources = "0.15.1"
-        const val mokoNetwork = "0.9.1"
-        const val mokoUnits = "0.4.1"
-        const val mokoPermissions = "0.7.0"
-        const val mokoParcelize = "0.5.0"
+        const val mokoNetwork = "0.15.2"
+        const val mokoPermissions = "0.9.0"
+        const val mokoParcelize = "0.6.1"
 
         const val sqlDelight = "1.5.0"
-        const val settings = "0.7.1"
+        const val settings = "0.7.7"
     }
 }

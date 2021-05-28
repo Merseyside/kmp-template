@@ -15,12 +15,15 @@ class NewsViewController: UIViewController {
     @IBOutlet private var errorView: UIView!
     @IBOutlet private var errorLabel: UILabel!
     
-    private var viewModel: ListViewModel<News>!
+    private var viewModel: NewsViewModel
+    
     private var dataSource: TableUnitsSource!
     private var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel.getList().addObserver(observer: <#T##(NSArray?) -> Void#>)
         
         viewModel = AppComponent.factory.newsFactory.createListViewModel()
 

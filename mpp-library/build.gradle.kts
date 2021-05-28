@@ -1,4 +1,3 @@
-import dependencies.Deps
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -36,32 +35,23 @@ kotlin {
     } else {
         iosX64("ios")
     }
+}
 
-    targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java).all {
-        val arch = when (this.konanTarget) {
-            org.jetbrains.kotlin.konan.target.KonanTarget.IOS_ARM64 -> "iosarm64"
-            org.jetbrains.kotlin.konan.target.KonanTarget.IOS_X64 -> "iosx64"
-            else -> throw IllegalArgumentException()
-        }
-        binaries.withType(org.jetbrains.kotlin.gradle.plugin.mpp.Framework::class.java).all {
-            export("${Deps.MultiPlatform.mokoMvvm.common}-$arch:${Versions.Common.mokoMvvm}")
-        }
-    }
+multiplatformResources {
+    multiplatformResourcesPackage = SharedConfig.RESOURCES_PACKAGE
 }
 
 val mppLibs = listOf(
-    Deps.MultiPlatform.kotlinStdLib,
     Deps.MultiPlatform.koin,
-    Deps.MultiPlatform.coroutines,
     Deps.MultiPlatform.settings,
     Deps.MultiPlatform.mokoParcelize,
     Deps.MultiPlatform.mokoResources,
-    Deps.MultiPlatform.mokoMvvm
+    Deps.MultiPlatform.mokoMvvm,
+    Deps.MultiPlatform.sqlDelight
 )
 val mppModules = listOf(
     Modules.MultiPlatform.domain,
-    Modules.MultiPlatform.Feature.list,
-    Modules.MultiPlatform.newsApi
+    Modules.MultiPlatform.Feature.news
 )
 
 val merseyModules = listOf(
@@ -69,16 +59,16 @@ val merseyModules = listOf(
 )
 
 dependencies {
-    mppModules.forEach { lib -> mppModule(lib) }
-    merseyModules.forEach { lib -> mppModule(lib) }
-    mppLibs.forEach { lib -> mppLibrary(lib) }
+    commonMainImplementation(project(Modules.MultiPlatform.core.name))
+    commonMainImplementation(Deps.MultiPlatform.coroutines)
+
+    mppModules.forEach { module -> commonMainApi(project(module.name)) }
+    merseyModules.forEach { module -> commonMainApi(project(module.name)) }
+    mppLibs.forEach { lib -> commonMainApi(lib.common) }
 }
 
 framework {
     mppModules.forEach { export(it) }
     mppLibs.forEach { export(it) }
-}
-
-multiplatformResources {
-    multiplatformResourcesPackage = SharedConfig.RESOURCES_PACKAGE
+    merseyModules.forEach { export(it) }
 }

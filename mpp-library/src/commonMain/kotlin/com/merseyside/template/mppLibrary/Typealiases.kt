@@ -1,10 +1,9 @@
 package com.merseyside.template.mppLibrary
 
-import com.merseyside.template.feature.list.presentation.ListViewModel
-import com.merseyside.template.domain.entity.News
+import com.merseyside.template.feature.news.presentation.NewsViewModel
 import dev.icerock.moko.mvvm.dispatcher.EventsDispatcher
 
 /* News feature */
-typealias NewsViewModel = ListViewModel<News>
-typealias NewsEventsListener = ListViewModel.EventsListener
-typealias NewsEventsDispatcher = EventsDispatcher<ListViewModel.EventsListener>
+typealias NewsEventsListener = NewsViewModel.EventsListener
+typealias NewsEventsDispatcher = EventsDispatcher<NewsViewModel.EventsListener>
+/**/

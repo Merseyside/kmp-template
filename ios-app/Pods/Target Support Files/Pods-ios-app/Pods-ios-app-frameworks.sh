@@ -177,12 +177,14 @@ code_sign_if_enabled() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework"
+  install_framework "${PODS_ROOT}/../../mpp-library/build/cocoapods/framework/MultiPlatformLibrary.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MultiPlatformLibraryMvvm/MultiPlatformLibraryMvvm.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework"
+  install_framework "${PODS_ROOT}/../../mpp-library/build/cocoapods/framework/MultiPlatformLibrary.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MultiPlatformLibraryMvvm/MultiPlatformLibraryMvvm.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework"
 fi

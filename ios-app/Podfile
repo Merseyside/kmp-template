@@ -22,7 +22,10 @@ end
 
 target 'ios-app' do
   pod 'MultiPlatformLibrary', :path => '../mpp-library'
-  pod 'MultiPlatformLibraryMvvm', :git => 'https://github.com/icerockdev/moko-mvvm.git', :tag => 'release/0.9.1'
-  pod 'AlamofireImage', '4.1'
-  pod 'Alamofire', '5.4.1'
+  pod 'MultiPlatformLibraryMvvm/Core',
+    :git => 'https://github.com/icerockdev/moko-mvvm.git', :tag => 'release/0.10.1'
+  pod 'MultiPlatformLibraryMvvm/AlamofireImage',
+    :git => 'https://github.com/icerockdev/moko-mvvm.git', :tag => 'release/0.10.1'
+  pod 'MultiPlatformLibraryMvvm/SkyFloatingLabelTextField',
+    :git => 'https://github.com/icerockdev/moko-mvvm.git', :tag => 'release/0.10.1'
 end
