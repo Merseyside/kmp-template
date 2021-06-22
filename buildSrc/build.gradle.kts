@@ -1,7 +1,7 @@
 plugins {
     `kotlin-dsl`
-    kotlin("jvm") version "1.5.0"
-    kotlin("plugin.serialization") version "1.5.0"
+    kotlin("jvm") version "1.5.10"
+    kotlin("plugin.serialization") version "1.5.10"
 }
 
 repositories {
@@ -12,7 +12,7 @@ repositories {
 }
 
 val multiplatform = "0.9.2"
-val kotlin = "1.5.0"
+val kotlin = "1.5.10"
 val gradle = "4.2.1"
 val resources = "0.15.1"
 val sqldelight = "1.5.0"

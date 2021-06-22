@@ -17,12 +17,16 @@ object Deps {
         val mokoMvvmDatabinding = "dev.icerock.moko:mvvm-databinding:${Versions.Common.mokoMvvm}"
         val mokoMvvmViewbinding = "dev.icerock.moko:mvvm-viewbinding:${Versions.Common.mokoMvvm}"
 
+
+
         object MerseyLibs {
             private const val base = "com.github.Merseyside.mersey-android-library"
             const val archy = "$base:archy:${Versions.Common.merseyLibs}"
             const val adapters = "$base:adapters:${Versions.Common.merseyLibs}"
             const val animators = "$base:animators:${Versions.Common.merseyLibs}"
             const val utils = "$base:utils:${Versions.Common.merseyLibs}"
+
+            const val archyAndroid = "io.github.merseyside:archy-android:${Versions.Common.merseyLibs}"
         }
     }
 
@@ -38,6 +42,8 @@ object Deps {
             .defaultMPL(ios = true)
         val mokoMvvm =  "dev.icerock.moko:mvvm-core:${Versions.Common.mokoMvvm}"
             .defaultMPL(ios = true)
+        val mokoMvvmLiveData = "dev.icerock.moko:mvvm-livedata:${LibraryVersions.Common.mokoMvvm}"
+            .defaultMPL()
         val mokoResources = "dev.icerock.moko:resources:${Versions.MultiPlatform.mokoResources}"
             .defaultMPL(ios = true)
         val mokoPermissions = "dev.icerock.moko:permissions:${Versions.MultiPlatform.mokoPermissions}"
@@ -52,11 +58,13 @@ object Deps {
         object MerseyLibs {
             private const val base = "io.github.merseyside"
 
-            val kmpCleanArch = "$base:kmp-clean-mvvm-arch:${Versions.Common.merseyLibs}"
+            val archy = "$base:archy-core:${Versions.Common.merseyLibs}"
                 .defaultMPL()
 
-            val kmpUtils = "$base:kmp-utils:${Versions.Common.merseyLibs}"
-                .defaultMPL()
+            val utils = "$base:utils-core:${Versions.Common.merseyLibs}"
+                .defaultMPL(
+                    android = true
+                )
         }
     }
 }

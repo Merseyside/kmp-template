@@ -1,5 +1,5 @@
 object Versions {
-    const val kotlin = "1.5.0"
+    const val kotlin = "1.5.10"
 
     object Plugins {
         const val gradle = "4.2.1"
@@ -11,7 +11,7 @@ object Versions {
     object Common {
         const val coroutines = "1.4.2"
         const val serialization = "1.2.1"
-        const val merseyLibs = "1.3.5"
+        const val merseyLibs = "1.3.6"
         const val koin = "3.0.2"
         const val mokoMvvm = "0.10.1"
     }

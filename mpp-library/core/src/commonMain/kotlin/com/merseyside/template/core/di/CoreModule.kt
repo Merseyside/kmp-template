@@ -1,6 +1,6 @@
 package com.merseyside.template.core.di
 
-import com.merseyside.kmpMerseyLib.utils.ext.logMsg
+import com.merseyside.merseyLib.utils.core.ext.logMsg
 import com.merseyside.template.core.db.DatabaseHelper
 import com.merseyside.template.core.repository.NewsRepositoryImpl
 import com.merseyside.template.domain.di.useCaseModule
@@ -20,7 +20,6 @@ val coreModule = module {
 
     loadKoinModules(
         listOf(
-            useCaseModule,
             newsApiModule
         )
     )

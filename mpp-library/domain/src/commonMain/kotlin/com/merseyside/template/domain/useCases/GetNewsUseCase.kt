@@ -1,6 +1,6 @@
 package com.merseyside.template.domain.useCases
 
-import com.merseyside.kmpMerseyLib.arch.domain.coroutines.CoroutineUseCase
+import com.merseyside.merseyLib.archy.core.domain.coroutines.CoroutineUseCase
 import com.merseyside.template.domain.entity.News
 import com.merseyside.template.domain.repository.NewsRepository
 

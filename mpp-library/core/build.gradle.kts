@@ -35,11 +35,11 @@ val mppLibs = listOf(
 )
 
 val merseyModules = listOf(
-    Modules.MultiPlatform.MerseyLibs.kmpUtils
+    Modules.MultiPlatform.MerseyLibs.utils
 )
 
 val merseyLibs = listOf(
-    Deps.MultiPlatform.MerseyLibs.kmpUtils
+    Deps.MultiPlatform.MerseyLibs.utils
 )
 
 dependencies {
@@ -56,7 +56,7 @@ dependencies {
     if (isLocalDependencies()) {
         merseyModules.forEach { module -> commonMainImplementation(project(module.name)) }
     } else {
-        merseyLibs.forEach { lib -> mppLibrary(lib) }
+        merseyLibs.forEach { lib -> commonMainImplementation(lib.common) }
     }
 }
 

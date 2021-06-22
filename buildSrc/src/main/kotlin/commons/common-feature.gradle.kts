@@ -58,13 +58,13 @@ val mppLibs = listOf(
 )
 
 val merseyModules = listOf(
-    Modules.MultiPlatform.MerseyLibs.kmpCleanArch,
-    Modules.MultiPlatform.MerseyLibs.kmpUtils
+    Modules.MultiPlatform.MerseyLibs.archy,
+    Modules.MultiPlatform.MerseyLibs.utils
 )
 
 val merseyLibs = listOf(
-    Deps.MultiPlatform.MerseyLibs.kmpCleanArch,
-    Deps.MultiPlatform.MerseyLibs.kmpUtils
+    Deps.MultiPlatform.MerseyLibs.archy,
+    Deps.MultiPlatform.MerseyLibs.utils
 )
 
 dependencies {

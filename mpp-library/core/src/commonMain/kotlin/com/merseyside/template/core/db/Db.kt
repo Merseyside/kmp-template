@@ -9,8 +9,6 @@ class DatabaseHelper(
 ) {
 
     private val db: TemplateDatabase = createQueryWrapper(sqlDriver)
-
-
 }
 
 private fun createQueryWrapper(driver: SqlDriver): TemplateDatabase {

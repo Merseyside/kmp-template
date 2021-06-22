@@ -1,7 +1,7 @@
 package com.merseyside.template.newsApi
 
-import com.merseyside.kmpMerseyLib.utils.ktor.KtorRouter
-import com.merseyside.kmpMerseyLib.utils.ktor.get
+import com.merseyside.merseyLib.utils.core.ktor.KtorRouter
+import com.merseyside.merseyLib.utils.core.ktor.get
 import com.merseyside.template.newsApi.entity.NewsResponse
 import io.ktor.client.*
 import kotlinx.serialization.json.Json

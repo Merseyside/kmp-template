@@ -1,6 +1,5 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
 CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/MultiPlatformLibrary
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/../../mpp-library/build/cocoapods/framework"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 GRADLE_TASK[sdk=iphoneos*][config=*ebug] = syncMultiPlatformLibraryDebugFrameworkIosArm64
 GRADLE_TASK[sdk=iphoneos*][config=*elease] = syncMultiPlatformLibraryReleaseFrameworkIosArm64

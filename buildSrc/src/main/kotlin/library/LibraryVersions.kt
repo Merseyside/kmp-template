@@ -2,10 +2,10 @@ object LibraryVersions {
 
     object Application {
         const val groupId = "io.github.merseyside"
-        const val applicationId = "com.merseyside.merseyKmpLibrary"
+        const val applicationId = "com.merseyside.merseyLib"
 
-        const val version = "1.3.5"
-        const val versionCode = 135
+        const val version = "1.3.6"
+        const val versionCode = 136
 
         const val compileSdk = 30
         const val targetSdk = 30
@@ -14,14 +14,14 @@ object LibraryVersions {
 
     object Common {
         const val kotlinStdLib = kotlin
-        const val coroutines = "1.4.2"
+        const val coroutines = "1.5.0-native-mt"
         const val serialization = "1.2.1"
         const val koin = "3.0.2"
         const val merseyLibs = "1.3.5"
         const val mokoMvvm = "0.10.1"
     }
 
-    const val kotlin = "1.5.0"
+    const val kotlin = "1.5.10"
     private const val mokoResources = "0.15.1"
 
     object Plugins {
@@ -31,6 +31,7 @@ object LibraryVersions {
         const val serialization = LibraryVersions.kotlin
         const val mokoResources = LibraryVersions.mokoResources
         const val sqlDelight = "1.5.0"
+
     }
 
     object Libs {
@@ -43,7 +44,7 @@ object LibraryVersions {
         const val cardView = "1.0.0"
         const val recyclerView = "1.1.0"
         const val navigation = "2.3.2"
-        const val dagger = "2.35.1"
+        const val dagger = "2.34"
         const val paging = "2.1.2"
         const val billing = "3.0.1"
         const val publisher = "v3-rev142-1.25.0"
@@ -56,7 +57,7 @@ object LibraryVersions {
         const val room = "2.3.0"
         const val rxjava2 = "2.2.20"
         const val coil = "1.1.1"
-        const val filemanager = "1.0.5"
+        const val filemanager = "1.0.6"
         const val typedDataStore = "1.0.0-alpha06"
         const val location = "18.0.0"
 

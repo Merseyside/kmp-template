@@ -117,6 +117,8 @@ object LibraryDeps {
                 iosX64 = "dev.icerock.moko:mvvm-iosx64:${LibraryVersions.Common.mokoMvvm}",
                 iosArm64 = "dev.icerock.moko:mvvm-iosarm64:${LibraryVersions.Common.mokoMvvm}"
             )
+            val mokoMvvmLiveData = "dev.icerock.moko:mvvm-livedata:${LibraryVersions.Common.mokoMvvm}"
+                .defaultMPL()
             val mokoResources = MultiPlatformLibrary(
                 common = "dev.icerock.moko:resources:${LibraryVersions.Libs.MultiPlatform.mokoResources}",
                 iosX64 = "dev.icerock.moko:resources-iosx64:${LibraryVersions.Libs.MultiPlatform.mokoResources}",

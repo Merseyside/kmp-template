@@ -5,14 +5,16 @@ object Modules {
             const val adapters = ":adapters"
             const val animators = ":animators"
             const val utils = ":utils"
+
+            const val archyAndroid = ":archy-android"
         }
     }
 
     object MultiPlatform {
 
         object MerseyLibs {
-            val kmpCleanArch = MultiPlatformModule(":kmp-clean-mvvm-arch")
-            val kmpUtils = MultiPlatformModule(":kmp-utils")
+            val archy = MultiPlatformModule(":archy-core")
+            val utils = MultiPlatformModule(":utils-core")
         }
 
         val mppLibrary = ":mpp-library"

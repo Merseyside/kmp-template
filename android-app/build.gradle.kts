@@ -91,13 +91,15 @@ val androidLibs = listOf(
 val merseyLibs = listOf(
     Deps.Android.MerseyLibs.archy,
     Deps.Android.MerseyLibs.adapters,
-    Deps.Android.MerseyLibs.utils
+    Deps.Android.MerseyLibs.utils,
+    Deps.Android.MerseyLibs.archyAndroid
 )
 
 val merseyModules = listOf(
     Modules.Android.MerseyLibs.archy,
     Modules.Android.MerseyLibs.adapters,
-    Modules.Android.MerseyLibs.utils
+    Modules.Android.MerseyLibs.utils,
+    Modules.Android.MerseyLibs.archyAndroid
 )
 
 dependencies {

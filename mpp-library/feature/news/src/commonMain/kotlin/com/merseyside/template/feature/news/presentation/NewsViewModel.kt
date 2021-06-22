@@ -1,15 +1,14 @@
 package com.merseyside.template.feature.news.presentation
 
-import com.merseyside.kmpMerseyLib.arch.presentation.di.StateViewModel
-import com.merseyside.kmpMerseyLib.utils.SavedState
-import com.merseyside.kmpMerseyLib.utils.ext.log
-import com.merseyside.kmpMerseyLib.utils.ext.logMsg
+import com.merseyside.merseyLib.archy.core.presentation.model.StateViewModel
+import com.merseyside.merseyLib.utils.core.SavedState
 import com.merseyside.template.domain.entity.News
 import com.merseyside.template.domain.useCases.GetNewsUseCase
 import dev.icerock.moko.mvvm.dispatcher.EventsDispatcher
 import dev.icerock.moko.mvvm.dispatcher.EventsDispatcherOwner
 import dev.icerock.moko.mvvm.livedata.LiveData
 import dev.icerock.moko.mvvm.livedata.MutableLiveData
+import com.merseyside.merseyLib.utils.core.Logger
 
 class NewsViewModel(
     override val eventsDispatcher: EventsDispatcher<EventsListener>,
@@ -35,18 +34,14 @@ class NewsViewModel(
     }
 
     override fun onRestoreState(savedState: SavedState) {
-        savedState.getInt("value").log()
-        logMsg("onRestore")
+        Logger.log(savedState.getInt("value")!!)
     }
 
     override fun onSaveState(savedState: SavedState) {
-        logMsg("onSave")
         savedState.put("value", 50)
     }
 
     override fun onCleared() {
         super.onCleared()
-
-        logMsg("onCleared")
     }
 }
