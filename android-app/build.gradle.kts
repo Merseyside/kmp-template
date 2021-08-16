@@ -107,7 +107,7 @@ dependencies {
 
     androidLibs.forEach { lib -> implementation(lib) }
 
-    if (isLocalDependencies()) {
+    if (isLocalAndroidDependencies()) {
         merseyModules.forEach { lib -> implementation(project(lib)) }
     } else {
         merseyLibs.forEach { lib -> implementation(lib) }

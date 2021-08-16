@@ -1,7 +1,7 @@
 plugins {
     `kotlin-dsl`
-    kotlin("jvm") version "1.5.10"
-    kotlin("plugin.serialization") version "1.5.10"
+    kotlin("jvm") version "1.5.30-RC"
+    kotlin("plugin.serialization") version "1.5.30-RC"
 }
 
 repositories {
@@ -11,11 +11,12 @@ repositories {
     google()
 }
 
-val multiplatform = "0.9.2"
-val kotlin = "1.5.10"
+val multiplatform = "0.12.0"
+val kotlin = "1.5.30-RC"
 val gradle = "4.2.1"
 val resources = "0.15.1"
 val sqldelight = "1.5.0"
+val navigation = "2.3.5"
 
 dependencies {
     implementation("com.android.tools.build:gradle:$gradle")

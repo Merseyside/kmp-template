@@ -2,28 +2,28 @@ include(
     ":android-app",
     ":mpp-library",
     ":mpp-library:domain",
-    ":mpp-library:core",
-
-    ":mpp-library:feature:news",
-    ":mpp-library:library:newsApi"
+    ":mpp-library:core"
 )
 
-private val isLocalDependencies = false
+private val isLocalDependencies = true
+private val isLocalAndroidDependencies = false
 
 if (isLocalDependencies) {
 
     include(":archy-core")
     project(":archy-core").projectDir =
-        File(rootDir.parent, "mersey-kmp-library/archy-core")
+        File(rootDir, "kmm-support-library/archy-core")
 
     include(":utils-core")
     project(":utils-core").projectDir =
-        File(rootDir.parent, "mersey-kmp-library/utils-core")
+        File(rootDir, "kmm-support-library/utils-core")
 
     include(":archy-android")
     project(":archy-android").projectDir =
-        File(rootDir.parent, "mersey-kmp-library/archy-android")
+        File(rootDir, "kmm-support-library/archy-android")
+}
 
+if (isLocalAndroidDependencies) {
     include(":utils")
     project(":utils").projectDir =
         File(rootDir.parent, "mersey-android-library/utils")

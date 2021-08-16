@@ -17,16 +17,14 @@ object Deps {
         val mokoMvvmDatabinding = "dev.icerock.moko:mvvm-databinding:${Versions.Common.mokoMvvm}"
         val mokoMvvmViewbinding = "dev.icerock.moko:mvvm-viewbinding:${Versions.Common.mokoMvvm}"
 
-
-
         object MerseyLibs {
             private const val base = "com.github.Merseyside.mersey-android-library"
-            const val archy = "$base:archy:${Versions.Common.merseyLibs}"
-            const val adapters = "$base:adapters:${Versions.Common.merseyLibs}"
-            const val animators = "$base:animators:${Versions.Common.merseyLibs}"
-            const val utils = "$base:utils:${Versions.Common.merseyLibs}"
+            const val archy = "$base:archy:${Versions.Android.merseyLibs}"
+            const val adapters = "$base:adapters:${Versions.Android.merseyLibs}"
+            const val animators = "$base:animators:${Versions.Android.merseyLibs}"
+            const val utils = "$base:utils:${Versions.Android.merseyLibs}"
 
-            const val archyAndroid = "io.github.merseyside:archy-android:${Versions.Common.merseyLibs}"
+            const val archyAndroid = "io.github.merseyside:archy-android:${Versions.MultiPlatform.merseyLibs}"
         }
     }
 
@@ -58,10 +56,10 @@ object Deps {
         object MerseyLibs {
             private const val base = "io.github.merseyside"
 
-            val archy = "$base:archy-core:${Versions.Common.merseyLibs}"
+            val archy = "$base:archy-core:${Versions.MultiPlatform.merseyLibs}"
                 .defaultMPL()
 
-            val utils = "$base:utils-core:${Versions.Common.merseyLibs}"
+            val utils = "$base:utils-core:${Versions.MultiPlatform.merseyLibs}"
                 .defaultMPL(
                     android = true
                 )

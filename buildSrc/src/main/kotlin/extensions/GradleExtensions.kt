@@ -24,6 +24,10 @@ fun Project.isLocalDependencies(): Boolean {
     return findTypedProperty("build.localDependencies")
 }
 
+fun Project.isLocalAndroidDependencies(): Boolean {
+    return findTypedProperty("build.localAndroidDependencies")
+}
+
 fun DependencyHandler.androidImplementation(dependencyNotation: AndroidLibrary): Dependency? =
     add("implementation", dependencyNotation.name)
 

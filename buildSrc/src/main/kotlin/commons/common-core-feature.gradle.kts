@@ -1,11 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("com.android.library")
     kotlin("multiplatform")
+    id("kotlinx-serialization")
+    id("com.android.library")
     id("dev.icerock.mobile.multiplatform")
     kotlin("kapt")
-    id("kotlinx-serialization")
 }
 
 android {
@@ -43,43 +43,29 @@ tasks.withType<KotlinCompile> {
     }
 }
 
-kotlin {
-    android()
-}
-
 val androidLibs = listOf(
     Deps.Android.appCompat,
     Deps.Android.coroutines,
-    Deps.Android.serialization
-)
-
-val androidMerseyLibs = listOf(
+    Deps.Android.serialization,
+    Deps.Android.koin,
     Deps.Android.MerseyLibs.utils
-)
-
-val androidMerseyModules = listOf(
-    Modules.Android.MerseyLibs.utils
 )
 
 val mppLibs = listOf(
     Deps.MultiPlatform.koin,
-    Deps.MultiPlatform.mokoMvvm,
     Deps.MultiPlatform.mokoResources
 )
 
 val merseyModules = listOf(
-    Modules.MultiPlatform.MerseyLibs.archy,
     Modules.MultiPlatform.MerseyLibs.utils
 )
 
 val merseyLibs = listOf(
-    Deps.MultiPlatform.MerseyLibs.archy,
     Deps.MultiPlatform.MerseyLibs.utils
 )
 
 dependencies {
     commonMainImplementation(Deps.MultiPlatform.coroutines)
-    commonMainImplementation(project(Modules.MultiPlatform.domain.name))
 
     mppLibs.forEach { lib -> commonMainImplementation(lib.common) }
     androidLibs.forEach { lib -> androidMainImplementation(lib) }
@@ -88,11 +74,5 @@ dependencies {
         merseyModules.forEach { module -> commonMainImplementation(project(module.name)) }
     } else {
         merseyLibs.forEach { lib -> commonMainImplementation(lib.common) }
-    }
-
-    if (isLocalAndroidDependencies()) {
-        androidMerseyModules.forEach { module -> androidMainImplementation(project(module)) }
-    } else {
-        androidMerseyLibs.forEach { lib -> androidMainImplementation(lib) }
     }
 }

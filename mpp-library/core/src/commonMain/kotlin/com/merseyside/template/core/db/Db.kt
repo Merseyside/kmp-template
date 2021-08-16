@@ -14,14 +14,6 @@ class DatabaseHelper(
 private fun createQueryWrapper(driver: SqlDriver): TemplateDatabase {
     return TemplateDatabase(
         driver = driver
-//        teamAdapter = Team.Adapter(
-//            foundedAdapter = DateAdapter()
-//        ),
-//        playerAdapter = Player.Adapter(
-//            shootsAdapter = EnumColumnAdapter(),
-//            positionAdapter = EnumColumnAdapter(),
-//            birth_dateAdapter = DateAdapter()
-//        )
     )
 }
 
