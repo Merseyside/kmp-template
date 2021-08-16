@@ -1,5 +1,4 @@
-import dependencies.Deps
-import extensions.isLocalDependencies
+
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -7,7 +6,6 @@ plugins {
     plugin(Plugins.kotlinMultiplatform)
     plugin(Plugins.kotlinSerialization)
     plugin(Plugins.mobileMultiplatform)
-    plugin(Plugins.sqlDelight)
 }
 
 android {
@@ -25,50 +23,30 @@ android {
     }
 }
 
-val modulez = listOf(
-    Modules.MultiPlatform.Feature.list,
-    Modules.MultiPlatform.newsApi
-)
-
 val mppLibs = listOf(
-    Deps.MultiPlatform.kotlinStdLib,
     Deps.MultiPlatform.koin,
-    Deps.MultiPlatform.coroutines,
-    Deps.MultiPlatform.serialization,
-    Deps.MultiPlatform.ktorClient,
-    Deps.MultiPlatform.ktorClientLogging,
-    Deps.MultiPlatform.mokoParcelize,
-    Deps.MultiPlatform.mokoNetwork,
     Deps.MultiPlatform.settings,
     Deps.MultiPlatform.sqlDelight
 )
 
 val merseyModules = listOf(
-    Modules.MultiPlatform.MerseyLibs.kmpCleanArch,
-    Modules.MultiPlatform.MerseyLibs.kmpUtils
+    Modules.MultiPlatform.MerseyLibs.archy,
+    Modules.MultiPlatform.MerseyLibs.utils
 )
 
 val merseyLibs = listOf(
-    Deps.MultiPlatform.MerseyLibs.kmpCleanArch,
-    Deps.MultiPlatform.MerseyLibs.kmpUtils
+    Deps.MultiPlatform.MerseyLibs.archy,
+    Deps.MultiPlatform.MerseyLibs.utils
 )
 
 dependencies {
-    mppLibs.forEach { lib -> mppLibrary(lib) }
-    modulez.forEach { module -> mppModule(module) }
+    commonMainImplementation(Deps.MultiPlatform.coroutines)
+
+    mppLibs.forEach { lib -> commonMainApi(lib.common) }
 
     if (isLocalDependencies()) {
-        merseyModules.forEach { module -> mppModule(module) }
+        merseyModules.forEach { module -> commonMainImplementation(project(module.name)) }
     } else {
-        merseyLibs.forEach { lib -> mppLibrary(lib) }
+        merseyLibs.forEach { lib -> commonMainImplementation(lib.common) }
     }
-}
-
-sqldelight {
-    database("TemplateDatabase") {
-        packageName = "com.merseyside.template.data.db"
-        sourceFolders = listOf("sqldelight")
-        schemaOutputDirectory = file("build/dbs")
-    }
-    linkSqlite = false
 }

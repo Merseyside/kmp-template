@@ -1,10 +1,9 @@
-import dependencies.Deps
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.library")
-    id("kotlin-android")
-    id("kotlin-kapt")
+    kotlin("android")
+    kotlin("kapt")
     id("kotlinx-serialization")
 }
 
@@ -23,7 +22,6 @@ android {
     }
 
     android.buildFeatures.dataBinding = true
-
 
     sourceSets {
         getByName("main") {
@@ -44,9 +42,9 @@ android {
 val androidLibs = listOf(
     Deps.Android.appCompat,
     Deps.Android.coroutines,
-    Deps.Android.koinViewModels
+    Deps.Android.koin
 )
 
 dependencies {
-    androidLibs.forEach { lib -> implementation(lib.name) }
+    androidLibs.forEach { lib -> implementation(lib) }
 }

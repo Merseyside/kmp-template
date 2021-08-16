@@ -1,7 +1,5 @@
-import dependencies.Deps
+
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import extensions.androidImplementation
-import extensions.isLocalDependencies
 
 plugins {
     plugin(Plugins.androidApplication)
@@ -84,7 +82,7 @@ val androidLibs = listOf(
     Deps.Android.constraintLayout,
     Deps.Android.mokoMvvmDatabinding,
     Deps.Android.mokoMvvmViewbinding,
-    Deps.Android.koinViewModels,
+    Deps.Android.koin,
     Deps.Android.koinExt,
     Deps.Android.material,
     Deps.Android.recyclerView
@@ -93,21 +91,23 @@ val androidLibs = listOf(
 val merseyLibs = listOf(
     Deps.Android.MerseyLibs.archy,
     Deps.Android.MerseyLibs.adapters,
-    Deps.Android.MerseyLibs.utils
+    Deps.Android.MerseyLibs.utils,
+    Deps.Android.MerseyLibs.archyAndroid
 )
 
 val merseyModules = listOf(
     Modules.Android.MerseyLibs.archy,
     Modules.Android.MerseyLibs.adapters,
-    Modules.Android.MerseyLibs.utils
+    Modules.Android.MerseyLibs.utils,
+    Modules.Android.MerseyLibs.archyAndroid
 )
 
 dependencies {
     implementation(project(Modules.MultiPlatform.mppLibrary))
 
-    androidLibs.forEach { lib -> androidImplementation(lib) }
+    androidLibs.forEach { lib -> implementation(lib) }
 
-    if (isLocalDependencies()) {
+    if (isLocalAndroidDependencies()) {
         merseyModules.forEach { lib -> implementation(project(lib)) }
     } else {
         merseyLibs.forEach { lib -> implementation(lib) }

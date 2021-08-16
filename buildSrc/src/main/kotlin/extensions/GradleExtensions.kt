@@ -1,6 +1,3 @@
-package extensions
-
-import AndroidLibrary
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Dependency
@@ -25,6 +22,10 @@ inline fun <reified T> Project.findTypedProperty(propertyName: String): T {
 
 fun Project.isLocalDependencies(): Boolean {
     return findTypedProperty("build.localDependencies")
+}
+
+fun Project.isLocalAndroidDependencies(): Boolean {
+    return findTypedProperty("build.localAndroidDependencies")
 }
 
 fun DependencyHandler.androidImplementation(dependencyNotation: AndroidLibrary): Dependency? =

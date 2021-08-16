@@ -8,18 +8,5 @@
     <fragment
         android:id="@+id/news_fragment"
         android:name="com.merseyside.template.fragments.main.view.NewsFragment"
-        android:label="NewsFragment">
-        <action
-            android:id="@+id/action_news_fragment_to_news_fragment1"
-            app:destination="@id/news_fragment1" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/news_fragment1"
-        android:name="com.merseyside.template.fragments.main.view.NewsFragment"
-        android:label="NewsFragment">
-    </fragment>
-
-
-
+        android:label="NewsFragment"/>
 </navigation>

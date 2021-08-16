@@ -2,32 +2,30 @@
  * Configuration of all gradle build plugins
  */
 object Plugins {
-    val androidApplication = PluginDesc(id = "com.android.application")
-    val androidLibrary = PluginDesc(id = "com.android.library")
-    val androidFeature = PluginDesc(id = "android-feature")
-    val commonFeature = PluginDesc(id = "common-feature")
-    val kotlinKapt = PluginDesc(id = "kotlin-kapt")
-    val kotlinAndroid = PluginDesc(id = "kotlin-android")
-    val mobileMultiplatform = PluginDesc(id = "dev.icerock.mobile.multiplatform")
-    val dynamicFeature = PluginDesc(id = "com.android.dynamic-feature")
-    val commonsDynamicFeature = PluginDesc(id = "commons.android-dynamic-feature")
-    val updateDependencies = PluginDesc(id = "plugins.update-dependencies")
-    val detekt = PluginDesc(id = "plugins.detekt")
-    val navigationArgs = PluginDesc(id = "androidx.navigation.safeargs.kotlin")
-    val kotlinParcelize = PluginDesc(id = "kotlin-parcelize")
-    val multiplatformResources = PluginDesc(id = "dev.icerock.mobile.multiplatform-resources")
+    val androidApplication = GradlePlugin(id = "com.android.application")
+    val androidLibrary = GradlePlugin(id = "com.android.library")
+    val androidFeature = GradlePlugin(id = "android-feature")
+    val kotlinMultiplatform = GradlePlugin(id = "org.jetbrains.kotlin.multiplatform")
+    val commonFeature = GradlePlugin(id = "common-feature")
+    val kotlinKapt = GradlePlugin(id = "kotlin-kapt")
+    val kotlinAndroid = GradlePlugin(id = "kotlin-android")
+    val mobileMultiplatform = GradlePlugin(id = "dev.icerock.mobile.multiplatform")
+    val dynamicFeature = GradlePlugin(id = "com.android.dynamic-feature")
+    val commonsDynamicFeature = GradlePlugin(id = "commons.android-dynamic-feature")
+    val updateDependencies = GradlePlugin(id = "plugins.update-dependencies")
+    val detekt = GradlePlugin(id = "plugins.detekt")
+    val navigationArgs = GradlePlugin(id = "androidx.navigation.safeargs.kotlin")
+    val kotlinParcelize = GradlePlugin(id = "kotlin-parcelize")
+    val multiplatformResources = GradlePlugin(id = "dev.icerock.mobile.multiplatform-resources")
+    val iosFramework = GradlePlugin(id = "dev.icerock.mobile.multiplatform.ios-framework")
+    val cocoaPods = GradlePlugin(id = "org.jetbrains.kotlin.native.cocoapods")
 
-    val sqlDelight = PluginDesc(
+    val sqlDelight = GradlePlugin(
         id = "com.squareup.sqldelight",
         module = "com.squareup.sqldelight:gradle-core.plugins.plugin:${Versions.Plugins.sqlDelight}"
     )
 
-    val kotlinMultiplatform = PluginDesc(
-        id = "org.jetbrains.kotlin.multiplatform",
-        module = "org.jetbrains.kotlin:kotlin-gradle-core.plugins.plugin:${Versions.kotlin}"
-    )
-
-    val kotlinSerialization = PluginDesc(
+    val kotlinSerialization = GradlePlugin(
         id = "kotlinx-serialization",
         module = "org.jetbrains.kotlin:kotlin-serialization:${Versions.Plugins.serialization}"
     )

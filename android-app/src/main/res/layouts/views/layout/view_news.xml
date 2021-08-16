@@ -24,6 +24,7 @@
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 app:imageUrl="@{viewModel.imageUrl}"
+                crossfade="@{true}"
                 android:scaleType="fitXY"
                 tools:ignore="ContentDescription" />
 

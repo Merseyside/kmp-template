@@ -1,43 +1,44 @@
 object Versions {
-    const val kotlin = "1.4.30"
+    const val kotlin = "1.5.30-RC"
 
     object Plugins {
-        const val gradle = "4.1.1"
+        const val gradle = "4.2.1"
 
         const val serialization = kotlin
-        const val sqlDelight = "1.4.4"
+        const val sqlDelight = "1.5.0"
     }
 
     object Common {
-        const val coroutines = "1.3.8"
-        const val serialization = "1.0.1"
-        const val merseyLibs = "1.3.0"
-        const val koin = "3.0.0-alpha-4"
+        const val coroutines = "1.5.1-native-mt"
+        const val serialization = "1.2.2"
+
+        const val koin = "3.1.2"
+        const val mokoMvvm = "0.11.0"
     }
 
     object Android {
         const val appCompat = "1.2.0"
-        const val material = "1.2.1"
-        const val constraintLayout = "2.1.0-alpha2"
-        const val navigation = "2.3.2"
-        const val lifecycle = "2.3.0-rc01"
+        const val material = "1.3.0"
+        const val constraintLayout = "2.0.4"
+        const val navigation = "2.3.5"
+        const val lifecycle = "2.3.1"
         const val recyclerView = "1.1.0"
-        const val mokoMvvm = "0.9.1"
+        const val merseyLibs = "1.4.1"
     }
 
     object MultiPlatform {
-        const val kotlinStdLib = kotlin
 
-        const val ktorClient = "1.5.1"
+        const val ktorClient = "1.6.0"
         const val ktorClientLogging = ktorClient
 
-        const val mokoMvvm = "0.9.1"
-        const val mokoResources = "0.14.0"
-        const val mokoNetwork = "0.9.1"
-        const val mokoUnits = "0.4.1"
-        const val mokoPermissions = "0.7.0"
-        const val mokoParcelize = "0.5.0"
+        const val mokoResources = "0.16.1"
+        const val mokoNetwork = "0.15.2"
+        const val mokoPermissions = "0.9.0"
+        const val mokoParcelize = "0.6.1"
 
-        const val settings = "0.7.1"
+        const val sqlDelight = "1.5.0"
+        const val settings = "0.7.7"
+
+        const val merseyLibs = "1.3.6"
     }
 }

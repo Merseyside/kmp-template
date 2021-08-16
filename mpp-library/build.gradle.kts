@@ -1,12 +1,13 @@
-import dependencies.Deps
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import extensions.isLocalDependencies
 
 plugins {
     plugin(Plugins.androidLibrary)
     plugin(Plugins.kotlinMultiplatform)
     plugin(Plugins.mobileMultiplatform)
     plugin(Plugins.multiplatformResources)
+    plugin(Plugins.kotlinParcelize)
+    plugin(Plugins.iosFramework)
+    plugin(Plugins.sqlDelight)
 }
 
 android {
@@ -24,35 +25,59 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+kotlin {
+    android()
+
+    //iOS
+    val onPhone = System.getenv("SDK_NAME")?.startsWith("iphoneos") ?: false
+    if (onPhone) {
+        iosArm64("ios")
+    } else {
+        iosX64("ios")
+    }
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = SharedConfig.RESOURCES_PACKAGE
+}
+
 val mppLibs = listOf(
-    Deps.MultiPlatform.coroutines,
     Deps.MultiPlatform.koin,
     Deps.MultiPlatform.settings,
     Deps.MultiPlatform.mokoParcelize,
     Deps.MultiPlatform.mokoResources,
     Deps.MultiPlatform.mokoMvvm,
-    Deps.MultiPlatform.mokoUnits
+    Deps.MultiPlatform.sqlDelight
 )
 val mppModules = listOf(
     Modules.MultiPlatform.domain,
-    Modules.MultiPlatform.Feature.list,
-    Modules.MultiPlatform.newsApi
+    Modules.MultiPlatform.Feature.news
 )
 
 val merseyModules = listOf(
-    Modules.MultiPlatform.MerseyLibs.kmpCleanArch
+    Modules.MultiPlatform.MerseyLibs.archy
+)
+
+val merseyLibs = listOf(
+    Deps.MultiPlatform.MerseyLibs.archy
 )
 
 dependencies {
-    mppModules.forEach { lib -> mppModule(lib) }
+    commonMainImplementation(project(Modules.MultiPlatform.core.name))
+    commonMainImplementation(Deps.MultiPlatform.coroutines)
 
     if (isLocalDependencies()) {
-        merseyModules.forEach { lib -> mppModule(lib) }
+        merseyModules.forEach { module -> commonMainApi(project(module.name)) }
+    } else {
+        merseyLibs.forEach { lib -> commonMainApi(lib.common) }
     }
 
-    mppLibs.forEach { lib -> mppLibrary(lib) }
+    mppModules.forEach { module -> commonMainApi(project(module.name)) }
+    mppLibs.forEach { lib -> commonMainApi(lib.common) }
 }
 
-multiplatformResources {
-    multiplatformResourcesPackage = SharedConfig.RESOURCES_PACKAGE
+framework {
+    mppModules.forEach { export(it) }
+    mppLibs.forEach { export(it) }
+    merseyModules.forEach { export(it) }
 }
