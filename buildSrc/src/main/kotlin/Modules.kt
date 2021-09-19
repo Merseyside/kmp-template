@@ -13,28 +13,19 @@ object Modules {
     object MultiPlatform {
 
         object MerseyLibs {
-            val archy = MultiPlatformModule(":archy-core")
-            val utils = MultiPlatformModule(":utils-core")
+            val archy = ":archy-core"
+            val utils = ":utils-core"
         }
 
         val mppLibrary = ":mpp-library"
-        val domain = MultiPlatformModule(
-            name = "$mppLibrary:domain",
-            exported = true
-        )
-        val core = MultiPlatformModule(name = "$mppLibrary:core")
+        val domain = "$mppLibrary:domain"
+        val core = "$mppLibrary:core"
 
-        val newsApi = MultiPlatformModule(name = "$mppLibrary:library:newsApi")
+        val newsApi = "$mppLibrary:library:newsApi"
 
         object Feature {
-            val config = MultiPlatformModule(
-                name = "$mppLibrary:feature:config",
-                exported = true
-            )
-            val news = MultiPlatformModule(
-                name = "$mppLibrary:feature:news",
-                exported = true
-            )
+            val config ="$mppLibrary:feature:config"
+            val news = "$mppLibrary:feature:news"
         }
     }
 }

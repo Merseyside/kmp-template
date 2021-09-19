@@ -1,13 +1,11 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    plugin(Plugins.androidLibrary)
-    plugin(Plugins.kotlinMultiplatform)
-    plugin(Plugins.mobileMultiplatform)
-    plugin(Plugins.multiplatformResources)
-    plugin(Plugins.kotlinParcelize)
-    plugin(Plugins.iosFramework)
-    plugin(Plugins.sqlDelight)
+    id(Plugins.versionCatalog)
+    id(Plugins.androidLibrary)
+    id(Plugins.kotlinMultiplatform)
+    id(Plugins.mobileMultiplatform)
+    id(Plugins.kotlinParcelize)
+    id(Plugins.iosFramework)
+    id(Plugins.sqldelight)
 }
 
 android {
@@ -19,39 +17,24 @@ android {
     }
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-
 kotlin {
     android()
-
-    //iOS
-    val onPhone = System.getenv("SDK_NAME")?.startsWith("iphoneos") ?: false
-    if (onPhone) {
-        iosArm64("ios")
-    } else {
-        iosX64("ios")
-    }
 }
 
-multiplatformResources {
-    multiplatformResourcesPackage = SharedConfig.RESOURCES_PACKAGE
-}
+val androidLib = listOf(
+    libs.android.sqldelight
+)
 
 val mppLibs = listOf(
-    Deps.MultiPlatform.koin,
-    Deps.MultiPlatform.settings,
-    Deps.MultiPlatform.mokoParcelize,
-    Deps.MultiPlatform.mokoResources,
-    Deps.MultiPlatform.mokoMvvm,
-    Deps.MultiPlatform.sqlDelight
+    libs.multiplatform.coroutines,
+    libs.multiplatform.koin,
+    libs.multiplatform.settings,
+    libs.multiplatform.moko.resources,
+    libs.multiplatform.moko.mvvm,
+    libs.multiplatform.sqldelight
 )
 val mppModules = listOf(
-    Modules.MultiPlatform.domain,
-    Modules.MultiPlatform.Feature.news
+    projects.mppLibrary.domain,
 )
 
 val merseyModules = listOf(
@@ -59,21 +42,22 @@ val merseyModules = listOf(
 )
 
 val merseyLibs = listOf(
-    Deps.MultiPlatform.MerseyLibs.archy
+    libs.android.merseyLib.archyAndroid
 )
 
 dependencies {
-    commonMainImplementation(project(Modules.MultiPlatform.core.name))
-    commonMainImplementation(Deps.MultiPlatform.coroutines)
+    androidLib.forEach { lib -> androidMainImplementation(lib) }
+
+    commonMainImplementation(projects.mppLibrary.core)
 
     if (isLocalDependencies()) {
-        merseyModules.forEach { module -> commonMainApi(project(module.name)) }
+        merseyModules.forEach { module -> commonMainApi(project(module)) }
     } else {
-        merseyLibs.forEach { lib -> commonMainApi(lib.common) }
+        merseyLibs.forEach { lib -> commonMainApi(lib) }
     }
 
     mppModules.forEach { module -> commonMainApi(project(module.name)) }
-    mppLibs.forEach { lib -> commonMainApi(lib.common) }
+    mppLibs.forEach { lib -> commonMainApi(lib) }
 }
 
 framework {

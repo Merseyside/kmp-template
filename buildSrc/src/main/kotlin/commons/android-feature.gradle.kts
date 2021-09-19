@@ -1,48 +1,16 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    id("com.android.library")
+    id("android-convention")
     kotlin("android")
     kotlin("kapt")
     id("kotlinx-serialization")
 }
 
-android {
-    compileSdkVersion(AndroidConfig.COMPILE_SDK_VERSION)
-
-    defaultConfig {
-        minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
-        targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
-    }
-
-    tasks.withType<KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
-    }
-
-    android.buildFeatures.dataBinding = true
-
-    sourceSets {
-        getByName("main") {
-            java.srcDir("src/main/kotlin")
-        }
-        getByName("test") {
-            java.srcDir("src/test/kotlin")
-        }
-    }
-
-    lintOptions {
-        lintConfig = rootProject.file(".lint/config.xml")
-        isCheckAllWarnings = true
-        isWarningsAsErrors = true
-    }
-}
+private val libs = the<org.gradle.accessors.dm.LibrariesForLibs>()
 
 val androidLibs = listOf(
-    Deps.Android.appCompat,
-    Deps.Android.coroutines,
-    Deps.Android.koin
+    libs.android.appCompat,
+    libs.android.coroutines,
+    libs.android.koin
 )
 
 dependencies {

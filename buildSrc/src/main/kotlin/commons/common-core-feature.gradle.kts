@@ -1,6 +1,6 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    id("android-convention")
     kotlin("multiplatform")
     id("kotlinx-serialization")
     id("com.android.library")
@@ -8,52 +8,19 @@ plugins {
     kotlin("kapt")
 }
 
-android {
-    compileSdkVersion(AndroidConfig.COMPILE_SDK_VERSION)
-
-    defaultConfig {
-        minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
-        targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
-    }
-
-    sourceSets {
-        getByName("main") {
-            java.srcDir("src/main/kotlin")
-        }
-        getByName("test") {
-            java.srcDir("src/test/kotlin")
-        }
-    }
-
-    lintOptions {
-        lintConfig = rootProject.file(".lint/config.xml")
-        isCheckAllWarnings = true
-        isWarningsAsErrors = true
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
+private val libs = the<org.gradle.accessors.dm.LibrariesForLibs>()
 
 val androidLibs = listOf(
-    Deps.Android.appCompat,
-    Deps.Android.coroutines,
-    Deps.Android.serialization,
-    Deps.Android.koin,
-    Deps.Android.MerseyLibs.utils
+    libs.android.appCompat,
+    libs.android.coroutines,
+    libs.serialization,
+    libs.android.koin
 )
 
 val mppLibs = listOf(
-    Deps.MultiPlatform.koin,
-    Deps.MultiPlatform.mokoResources
+    libs.multiplatform.coroutines,
+    libs.multiplatform.koin,
+    libs.multiplatform.moko.resources
 )
 
 val merseyModules = listOf(
@@ -61,18 +28,16 @@ val merseyModules = listOf(
 )
 
 val merseyLibs = listOf(
-    Deps.MultiPlatform.MerseyLibs.utils
+    libs.multiplatform.merseyLib.utilsCore
 )
 
 dependencies {
-    commonMainImplementation(Deps.MultiPlatform.coroutines)
-
-    mppLibs.forEach { lib -> commonMainImplementation(lib.common) }
+    mppLibs.forEach { lib -> commonMainImplementation(lib) }
     androidLibs.forEach { lib -> androidMainImplementation(lib) }
 
     if (isLocalDependencies()) {
-        merseyModules.forEach { module -> commonMainImplementation(project(module.name)) }
+        merseyModules.forEach { module -> commonMainImplementation(project(module)) }
     } else {
-        merseyLibs.forEach { lib -> commonMainImplementation(lib.common) }
+        merseyLibs.forEach { lib -> commonMainImplementation(lib) }
     }
 }

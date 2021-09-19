@@ -1,60 +1,26 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("com.android.library")
+    id("android-convention")
     kotlin("multiplatform")
     id("dev.icerock.mobile.multiplatform")
     kotlin("kapt")
     id("kotlinx-serialization")
 }
 
-android {
-    compileSdkVersion(AndroidConfig.COMPILE_SDK_VERSION)
-
-    defaultConfig {
-        minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
-        targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
-    }
-
-    sourceSets {
-        getByName("main") {
-            java.srcDir("src/main/kotlin")
-        }
-        getByName("test") {
-            java.srcDir("src/test/kotlin")
-        }
-    }
-
-    lintOptions {
-        lintConfig = rootProject.file(".lint/config.xml")
-        isCheckAllWarnings = true
-        isWarningsAsErrors = true
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-
 kotlin {
     android()
 }
 
+val libs = the<org.gradle.accessors.dm.LibrariesForLibs>()
+
 val androidLibs = listOf(
-    Deps.Android.appCompat,
-    Deps.Android.coroutines,
-    Deps.Android.serialization
+    libs.android.appCompat,
+    libs.android.coroutines,
+    libs.serialization
 )
 
 val androidMerseyLibs = listOf(
-    Deps.Android.MerseyLibs.utils
+    libs.android.merseyLib.utils
 )
 
 val androidMerseyModules = listOf(
@@ -62,9 +28,10 @@ val androidMerseyModules = listOf(
 )
 
 val mppLibs = listOf(
-    Deps.MultiPlatform.koin,
-    Deps.MultiPlatform.mokoMvvm,
-    Deps.MultiPlatform.mokoResources
+    libs.multiplatform.coroutines,
+    libs.multiplatform.koin,
+    libs.multiplatform.moko.mvvm,
+    libs.multiplatform.moko.resources
 )
 
 val merseyModules = listOf(
@@ -73,21 +40,20 @@ val merseyModules = listOf(
 )
 
 val merseyLibs = listOf(
-    Deps.MultiPlatform.MerseyLibs.archy,
-    Deps.MultiPlatform.MerseyLibs.utils
+    libs.multiplatform.merseyLib.archyCore,
+    libs.multiplatform.merseyLib.utilsCore
 )
 
 dependencies {
-    commonMainImplementation(Deps.MultiPlatform.coroutines)
-    commonMainImplementation(project(Modules.MultiPlatform.domain.name))
+    commonMainImplementation(project(Modules.MultiPlatform.domain))
 
-    mppLibs.forEach { lib -> commonMainImplementation(lib.common) }
+    mppLibs.forEach { lib -> commonMainImplementation(lib) }
     androidLibs.forEach { lib -> androidMainImplementation(lib) }
 
     if (isLocalDependencies()) {
-        merseyModules.forEach { module -> commonMainImplementation(project(module.name)) }
+        merseyModules.forEach { module -> commonMainImplementation(project(module)) }
     } else {
-        merseyLibs.forEach { lib -> commonMainImplementation(lib.common) }
+        merseyLibs.forEach { lib -> commonMainImplementation(lib) }
     }
 
     if (isLocalAndroidDependencies()) {

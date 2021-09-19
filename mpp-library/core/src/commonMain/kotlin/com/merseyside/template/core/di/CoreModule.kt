@@ -1,22 +1,43 @@
 package com.merseyside.template.core.di
 
-import com.merseyside.merseyLib.utils.core.ext.logMsg
-import com.merseyside.template.core.db.DatabaseHelper
-import com.merseyside.template.newsApi.di.newsApiModule
 import io.ktor.client.*
 import io.ktor.client.features.logging.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.json.Json
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
+import com.merseyside.merseyLib.utils.core.Logger as AppLogger
 
-val coreModule = module {
+private val httpClientConfig: HttpClientConfig<*>.() -> Unit = {
+    install(Logging) {
+        logger = object : Logger {
+            override fun log(message: String) {
+                AppLogger.log(tag = "HTTP", message)
+            }
+        }
+        level = LogLevel.ALL
+    }
 
+    // disable standard BadResponseStatus - exceptionfactory do it for us
+    expectSuccess = false
+}
+
+private val featureModule = module {
     loadKoinModules(
         listOf(
-            newsApiModule
+
         )
     )
+}
+
+private val networkModule = module {
+
+    single {
+        httpClientConfig
+    }
+
+//    single<() -> HttpClient> {
+//        get<AuthManager>().httpClient
+//    }
 
     single {
         Json {
@@ -25,24 +46,20 @@ val coreModule = module {
             ignoreUnknownKeys = true
         }
     }
+}
 
-    single {
-        DatabaseHelper(sqlDriver = get(), Dispatchers.Default)
-    }
+private val reposModule = module {
 
-    single {
-        HttpClient {
+}
 
-            install(Logging) {
-                logger = object : Logger {
-                    override fun log(message: String) {
-                        logMsg(message)
-                    }
-                }
-                level = LogLevel.HEADERS
-            }
+val coreModule = module {
 
-            expectSuccess = false
-        }
-    }
+    loadKoinModules(
+        listOf(
+            networkModule,
+            featureModule,
+            reposModule,
+            //dbModule
+        )
+    )
 }

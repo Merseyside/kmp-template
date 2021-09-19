@@ -1,7 +1,3 @@
-
-
-package core.extensions
-
 import com.android.build.gradle.internal.dsl.BuildType
 
 /**

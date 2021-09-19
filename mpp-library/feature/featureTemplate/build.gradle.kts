@@ -1,11 +1,11 @@
 plugins {
-    plugin(Plugins.commonFeature)
+    id(Plugins.commonFeature)
 }
 
 val mppLibs = listOf(
-    Deps.MultiPlatform.settings
+    libs.multiplatform.settings
 )
 
 dependencies {
-    mppLibs.forEach { lib -> commonMainImplementation(lib.common) }
+    mppLibs.forEach { lib -> commonMainImplementation(lib) }
 }

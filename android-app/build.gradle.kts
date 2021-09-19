@@ -1,25 +1,23 @@
-
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    plugin(Plugins.androidApplication)
-    plugin(Plugins.kotlinAndroid)
-    plugin(Plugins.kotlinKapt)
+    id(Plugins.versionCatalog)
+    id(Plugins.androidApplication)
+    id(Plugins.kotlinAndroid)
+    id(Plugins.kotlinKapt)
 }
 
 android {
-    compileSdkVersion(AndroidConfig.COMPILE_SDK_VERSION)
+    compileSdkVersion(Application.compileSdk)
 
     defaultConfig {
-        minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
-        targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
+        minSdkVersion(Application.minSdk)
+        targetSdkVersion(Application.targetSdk)
 
-        applicationId = AndroidConfig.APPLICATION_ID
+        applicationId = Application.applicationId
 
-        versionCode = AndroidConfig.VERSION_CODE
-        versionName = AndroidConfig.VERSION_NAME
+        versionCode = Application.versionCode
+        versionName = Application.version
 
-        vectorDrawables.useSupportLibrary = AndroidConfig.SUPPORT_LIBRARY_VECTOR_DRAWABLES
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -31,11 +29,6 @@ android {
             isDebuggable = true
             applicationIdSuffix = ".debug"
         }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     buildFeatures.dataBinding = true
@@ -53,11 +46,6 @@ android {
         exclude("META-INF/NOTICE.txt")
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
     sourceSets.getByName("main") {
         res.srcDir("src/main/res/")
         res.srcDir("src/main/res/layouts/fragments")
@@ -69,30 +57,21 @@ android {
     }
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-
-val androidLibs = listOf(
-    Deps.Android.appCompat,
-    Deps.Android.navigation,
-    Deps.Android.navigationUi,
-    Deps.Android.constraintLayout,
-    Deps.Android.mokoMvvmDatabinding,
-    Deps.Android.mokoMvvmViewbinding,
-    Deps.Android.koin,
-    Deps.Android.koinExt,
-    Deps.Android.material,
-    Deps.Android.recyclerView
+val androidLib = listOf(
+    libs.android.appCompat,
+    libs.android.navigation,
+    libs.android.navigationUi,
+    libs.android.constraintLayout,
+    libs.android.koin,
+    libs.android.material,
+    libs.android.recyclerView
 )
 
 val merseyLibs = listOf(
-    Deps.Android.MerseyLibs.archy,
-    Deps.Android.MerseyLibs.adapters,
-    Deps.Android.MerseyLibs.utils,
-    Deps.Android.MerseyLibs.archyAndroid
+    libs.android.merseyLib.archy,
+    libs.android.merseyLib.adapters,
+    libs.android.merseyLib.utils,
+    libs.android.merseyLib.archyAndroid
 )
 
 val merseyModules = listOf(
@@ -103,9 +82,10 @@ val merseyModules = listOf(
 )
 
 dependencies {
-    implementation(project(Modules.MultiPlatform.mppLibrary))
+    implementation(projects.mppLibrary)
 
-    androidLibs.forEach { lib -> implementation(lib) }
+    androidLib.forEach { lib -> implementation(lib) }
+    implementation(libs.bundles.android.moko.mvvm)
 
     if (isLocalAndroidDependencies()) {
         merseyModules.forEach { lib -> implementation(project(lib)) }

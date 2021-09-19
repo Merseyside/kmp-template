@@ -1,11 +1,9 @@
-
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    plugin(Plugins.androidLibrary)
-    plugin(Plugins.kotlinMultiplatform)
-    plugin(Plugins.kotlinSerialization)
-    plugin(Plugins.mobileMultiplatform)
+    id(Plugins.versionCatalog)
+    id(Plugins.androidLibrary)
+    id(Plugins.kotlinMultiplatform)
+    id(Plugins.kotlinSerialization)
+    id(Plugins.mobileMultiplatform)
 }
 
 android {
@@ -15,18 +13,13 @@ android {
         minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
         targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
     }
-
-    tasks.withType<KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
-    }
 }
 
 val mppLibs = listOf(
-    Deps.MultiPlatform.koin,
-    Deps.MultiPlatform.settings,
-    Deps.MultiPlatform.sqlDelight
+    libs.multiplatform.coroutines,
+    libs.multiplatform.koin,
+    libs.multiplatform.settings,
+    libs.multiplatform.sqldelight
 )
 
 val merseyModules = listOf(
@@ -35,18 +28,16 @@ val merseyModules = listOf(
 )
 
 val merseyLibs = listOf(
-    Deps.MultiPlatform.MerseyLibs.archy,
-    Deps.MultiPlatform.MerseyLibs.utils
+    libs.multiplatform.merseyLib.archyCore,
+    libs.multiplatform.merseyLib.utilsCore
 )
 
 dependencies {
-    commonMainImplementation(Deps.MultiPlatform.coroutines)
-
-    mppLibs.forEach { lib -> commonMainApi(lib.common) }
+    mppLibs.forEach { lib -> commonMainApi(lib) }
 
     if (isLocalDependencies()) {
-        merseyModules.forEach { module -> commonMainImplementation(project(module.name)) }
+        merseyModules.forEach { module -> commonMainImplementation(project(module)) }
     } else {
-        merseyLibs.forEach { lib -> commonMainImplementation(lib.common) }
+        merseyLibs.forEach { lib -> commonMainImplementation(lib) }
     }
 }

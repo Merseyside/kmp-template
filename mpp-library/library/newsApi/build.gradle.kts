@@ -1,3 +1,3 @@
 plugins {
-    plugin(Plugins.commonFeature)
+    id(Plugins.commonFeature)
 }

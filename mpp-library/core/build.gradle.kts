@@ -1,11 +1,9 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    plugin(Plugins.androidLibrary)
-    plugin(Plugins.kotlinMultiplatform)
-    plugin(Plugins.kotlinSerialization)
-    plugin(Plugins.mobileMultiplatform)
-    plugin(Plugins.sqlDelight)
+    id("com.android.library")
+    id("org.jetbrains.kotlin.multiplatform")
+    id("kotlinx-serialization")
+    id("dev.icerock.mobile.multiplatform")
+    id("com.squareup.sqldelight")
 }
 
 android {
@@ -16,47 +14,39 @@ android {
         targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
     }
 
-    tasks.withType<KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
-    }
 }
 
-val modulez = listOf(
-    Modules.MultiPlatform.newsApi
-)
+//val modulez = listOf(
+//)
 
 val mppLibs = listOf(
-    Deps.MultiPlatform.koin,
-    Deps.MultiPlatform.mokoParcelize,
-    Deps.MultiPlatform.settings,
-    Deps.MultiPlatform.sqlDelight
+    libs.multiplatform.coroutines,
+    libs.multiplatform.serialization,
+    libs.multiplatform.ktor,
+    libs.multiplatform.ktorLogging,
+    libs.multiplatform.koin,
+    libs.multiplatform.settings,
+    libs.multiplatform.sqldelight
 )
 
 val merseyModules = listOf(
-    Modules.MultiPlatform.MerseyLibs.utils
+    ":utils-core"
 )
 
 val merseyLibs = listOf(
-    Deps.MultiPlatform.MerseyLibs.utils
+    libs.multiplatform.merseyLib.utilsCore
 )
 
 dependencies {
-    commonMainImplementation(project(Modules.MultiPlatform.domain.name))
+    commonMainImplementation(projects.mppLibrary.domain)
 
-    commonMainImplementation(Deps.MultiPlatform.coroutines)
-    commonMainImplementation(Deps.MultiPlatform.serialization)
-    commonMainImplementation(Deps.MultiPlatform.ktorClient)
-    commonMainImplementation(Deps.MultiPlatform.ktorClientLogging)
-
-    modulez.forEach { module -> commonMainImplementation(project(module.name)) }
-    mppLibs.forEach { lib -> commonMainImplementation(lib.common) }
+    //modulez.forEach { module -> commonMainImplementation(project(module.name)) }
+    mppLibs.forEach { lib -> commonMainImplementation(lib) }
 
     if (isLocalDependencies()) {
-        merseyModules.forEach { module -> commonMainImplementation(project(module.name)) }
+        merseyModules.forEach { module -> commonMainImplementation(project(module)) }
     } else {
-        merseyLibs.forEach { lib -> commonMainImplementation(lib.common) }
+        merseyLibs.forEach { lib -> commonMainImplementation(lib) }
     }
 }
 
