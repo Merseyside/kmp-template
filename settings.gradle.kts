@@ -8,25 +8,30 @@ pluginManagement {
     }
 }
 
-dependencyResolutionManagement {
-    repositories {
-        mavenCentral()
-        mavenLocal()
-    }
+private val isLocalDependencies = false
+private val isLocalAndroidDependencies = false
 
-    val group = "io.github.merseyside"
-    val catalogVersions = "1.0.8"
-    versionCatalogs {
-        val multiplatformLibs by creating {
-            from("$group:catalog-version-multiplatform:$catalogVersions")
+if (isLocalDependencies || isLocalAndroidDependencies) {
+    dependencyResolutionManagement {
+        repositories {
+            mavenCentral()
+            mavenLocal()
         }
 
-        val androidLibs by creating {
-            from("$group:catalog-version-android:$catalogVersions")
-        }
+        val group = "io.github.merseyside"
+        val catalogVersions = "1.0.9"
+        versionCatalogs {
+            val multiplatformLibs by creating {
+                from("$group:catalog-version-multiplatform:$catalogVersions")
+            }
 
-        val common by creating {
-            from("$group:catalog-version-common:$catalogVersions")
+            val androidLibs by creating {
+                from("$group:catalog-version-android:$catalogVersions")
+            }
+
+            val common by creating {
+                from("$group:catalog-version-common:$catalogVersions")
+            }
         }
     }
 }
@@ -34,13 +39,9 @@ dependencyResolutionManagement {
 include(
     ":android-app",
     ":mpp-library",
-    ":mpp-library:feature:featureTemplate",
     ":mpp-library:domain",
     ":mpp-library:core"
 )
-
-private val isLocalDependencies = true
-private val isLocalAndroidDependencies = true
 
 if (isLocalDependencies) {
 

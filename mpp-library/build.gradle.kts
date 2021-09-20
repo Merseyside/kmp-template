@@ -1,20 +1,11 @@
 plugins {
     id(Plugins.versionCatalog)
-    id(Plugins.androidLibrary)
+    `android-convention`
     id(Plugins.kotlinMultiplatform)
     id(Plugins.mobileMultiplatform)
     id(Plugins.kotlinParcelize)
     id(Plugins.iosFramework)
     id(Plugins.sqldelight)
-}
-
-android {
-    compileSdkVersion(AndroidConfig.COMPILE_SDK_VERSION)
-
-    defaultConfig {
-        minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
-        targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
-    }
 }
 
 kotlin {
@@ -46,8 +37,6 @@ val merseyLibs = listOf(
 )
 
 dependencies {
-    androidLib.forEach { lib -> androidMainImplementation(lib) }
-
     commonMainImplementation(projects.mppLibrary.core)
 
     if (isLocalDependencies()) {
@@ -56,12 +45,13 @@ dependencies {
         merseyLibs.forEach { lib -> commonMainApi(lib) }
     }
 
+    androidLib.forEach { lib -> androidMainImplementation(lib) }
     mppModules.forEach { module -> commonMainApi(project(module.name)) }
     mppLibs.forEach { lib -> commonMainApi(lib) }
 }
 
 framework {
     mppModules.forEach { export(it) }
-    mppLibs.forEach { export(it) }
+    mppLibs.forEach { export(it.toProvider()) }
     merseyModules.forEach { export(it) }
 }

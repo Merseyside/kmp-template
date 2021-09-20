@@ -1,19 +1,9 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.multiplatform")
-    id("kotlinx-serialization")
-    id("dev.icerock.mobile.multiplatform")
-    id("com.squareup.sqldelight")
-}
-
-android {
-    compileSdkVersion(AndroidConfig.COMPILE_SDK_VERSION)
-
-    defaultConfig {
-        minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
-        targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
-    }
-
+    `android-convention`
+    id(Plugins.kotlinMultiplatform)
+    id(Plugins.kotlinSerialization)
+    id(Plugins.mobileMultiplatform)
+    id(Plugins.sqldelight)
 }
 
 //val modulez = listOf(
@@ -23,7 +13,7 @@ val mppLibs = listOf(
     libs.multiplatform.coroutines,
     libs.multiplatform.serialization,
     libs.multiplatform.ktor,
-    libs.multiplatform.ktorLogging,
+    libs.multiplatform.ktor.logging,
     libs.multiplatform.koin,
     libs.multiplatform.settings,
     libs.multiplatform.sqldelight

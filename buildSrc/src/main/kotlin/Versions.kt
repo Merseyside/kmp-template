@@ -13,8 +13,3 @@ object Application {
     const val targetSdk = 30
     const val minSdk = 21
 }
-
-internal object PluginVersions {
-    const val gradle = "4.2.1"
-    const val serialization = kotlin
-}

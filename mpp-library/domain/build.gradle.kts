@@ -1,18 +1,9 @@
 plugins {
     id(Plugins.versionCatalog)
-    id(Plugins.androidLibrary)
+    `android-convention`
     id(Plugins.kotlinMultiplatform)
     id(Plugins.kotlinSerialization)
     id(Plugins.mobileMultiplatform)
-}
-
-android {
-    compileSdkVersion(AndroidConfig.COMPILE_SDK_VERSION)
-
-    defaultConfig {
-        minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
-        targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
-    }
 }
 
 val mppLibs = listOf(
