@@ -9,6 +9,7 @@ object Plugins {
     val kotlinMultiplatform = "org.jetbrains.kotlin.multiplatform"
     val versionCatalog = "commons.version-catalogs"
     val commonFeature = "common-feature"
+    val commonCoreFeature = "common-core-feature"
     val kotlinKapt = "kotlin-kapt"
     val kotlinAndroid = "kotlin-android"
     val mobileMultiplatform = "dev.icerock.mobile.multiplatform"

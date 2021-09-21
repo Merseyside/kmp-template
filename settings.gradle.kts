@@ -19,7 +19,7 @@ if (isLocalDependencies || isLocalAndroidDependencies) {
         }
 
         val group = "io.github.merseyside"
-        val catalogVersions = "1.0.9"
+        val catalogVersions = "1.1.0"
         versionCatalogs {
             val multiplatformLibs by creating {
                 from("$group:catalog-version-multiplatform:$catalogVersions")
